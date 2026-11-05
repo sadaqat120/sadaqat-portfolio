@@ -42,6 +42,7 @@ export type Project = {
 export const projects: Project[] = [
   {
     slug: "paving-advisor",
+    repo: "https://github.com/sadaqat120/ai-product-advisor-showcase",
     demo: { src: "/work/video/paving.mp4", poster: "/work/video/paving.webp" },
     title: "AI paving advisor with full materials calculation",
     client: "A Dutch paving and garden-materials company with a 5,000 m² showroom",
@@ -66,6 +67,7 @@ export const projects: Project[] = [
   },
   {
     slug: "partner-platform",
+    repo: "https://github.com/sadaqat120/stripe-partner-platform-showcase",
     demo: { src: "/work/video/partners.mp4", poster: "/work/video/partners.webp" },
     title: "Partner and referral platform with Stripe",
     client: "A US men's health startup",
@@ -90,6 +92,7 @@ export const projects: Project[] = [
   },
   {
     slug: "gift-advisor",
+    repo: "https://github.com/sadaqat120/ai-product-advisor-showcase",
     demo: { src: "/work/video/gifts.mp4", poster: "/work/video/gifts.webp" },
     title: "AI business-gift advisor",
     client: "A Dutch corporate-gifts webshop",
@@ -137,6 +140,7 @@ export const projects: Project[] = [
   },
   {
     slug: "mybuildhub",
+    repo: "https://github.com/sadaqat120/mybuildhub-saas-showcase",
     demo: { src: "/work/video/mybuildhub.mp4", poster: "/work/video/mybuildhub.webp" },
     title: "MyBuildHub",
     client: "Pembridge, Sydney",
@@ -163,6 +167,7 @@ export const projects: Project[] = [
   },
   {
     slug: "ai-product-advisor",
+    repo: "https://github.com/sadaqat120/ai-product-advisor-showcase",
     demo: { src: "/work/video/fyoil.mp4", poster: "/work/video/fyoil.webp" },
     title: "AI product advisor",
     client: "FYOIL, a Dutch oil webshop",
@@ -213,6 +218,7 @@ export const projects: Project[] = [
   },
   {
     slug: "after-hours-assistant",
+    repo: "https://github.com/sadaqat120/ai-after-hours-assistant-showcase",
     demo: { src: "/work/primecure-demo.mp4", poster: "/work/primecure-demo-poster.webp" },
     title: "After-hours AI assistant",
     client: "A US medical billing company",

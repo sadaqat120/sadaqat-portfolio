@@ -11,6 +11,7 @@ export default function Home() {
   return (
     <>
       <section className="hero">
+        <div className="hero-portrait" aria-hidden="true"><img src="/sadaqat-lg.webp" alt="" /></div>
         <div className="wrap hero-grid">
           <div>
             <div className="me">

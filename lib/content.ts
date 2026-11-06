@@ -417,7 +417,7 @@ export const services = [
     name: "AI product advisor or chatbot",
     who: "Webshops and service businesses whose customers ask the same questions before they buy.",
     get: "An assistant that answers from your own products, prices and documents, never invented ones, with a report of what customers ask.",
-    price: "from $800",
+    price: "from $500",
     time: "1–2 weeks",
   },
   {
@@ -425,7 +425,7 @@ export const services = [
     name: "Web app, SaaS or client portal",
     who: "Founders and companies replacing spreadsheets, or turning an idea into a product.",
     get: "Logins and roles, dashboards, data your team can trust, tests, and code you own.",
-    price: "from $3,000",
+    price: "from $1,500",
     time: "3–8 weeks",
   },
   {
@@ -433,7 +433,7 @@ export const services = [
     name: "Business website",
     who: "Restaurants, clinics, trades, coaches and local services.",
     get: "A fast site that works on phones, ranks on Google and turns visitors into bookings or calls.",
-    price: "from $900",
+    price: "from $500",
     time: "1–2 weeks",
   },
   {
@@ -441,7 +441,7 @@ export const services = [
     name: "Fixes for a live website",
     who: "Owners and agencies with a site that is slow, broken or invisible on Google.",
     get: "A written check first, then fixes with a full backup, no design changes, and before-and-after proof.",
-    price: "from $150",
+    price: "from $100",
     time: "1–3 days",
   },
   {
@@ -449,7 +449,7 @@ export const services = [
     name: "Extra developer for agencies",
     who: "Agencies with more client work than developers.",
     get: "Next.js, React, Node.js or WordPress work under your name, from brief to done.",
-    price: "$30 an hour, or a fixed price per task",
+    price: "$15–20 an hour, or a fixed price per task",
     time: "Starts within days",
   },
 ];

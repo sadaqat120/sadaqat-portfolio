@@ -1,4 +1,6 @@
+import Link from "next/link";
 import { person } from "@/lib/content";
+import { proofCount } from "@/lib/proof";
 
 const shots = [
   {
@@ -40,6 +42,7 @@ export default function Proof() {
           </figcaption>
         </figure>
       ))}
+      <p className="proof-more"><Link className="btn btn-line" href="/reviews">See all {proofCount} review screenshots</Link></p>
     </div>
   );
 }

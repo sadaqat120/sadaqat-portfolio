@@ -102,6 +102,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <a href={person.linkedin} rel="me noopener" target="_blank">LinkedIn</a>
               <a href={person.github} rel="me noopener" target="_blank">GitHub</a>
               <a href={person.fiverr} rel="me noopener" target="_blank">Fiverr</a>
+              <Link href="/reviews">Reviews</Link>
               <Link href="/contact">Contact</Link>
             </div>
           </div>

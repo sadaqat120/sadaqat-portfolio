@@ -349,3 +349,18 @@ p { margin: 0; }
 .hire-faq details p { margin: 10px 0 0; color: var(--mute); }
 .hire-also { margin-top: 22px; color: var(--mute); }
 .foot-hire { font-size: .92rem; color: var(--mute); display: flex; flex-wrap: wrap; gap: 6px 14px; margin-top: 12px; }
+
+/* Reviews wall */
+.rev-stats { list-style: none; padding: 0; margin: 28px 0 0; display: flex; flex-wrap: wrap; gap: 14px; }
+.rev-stats li { background: var(--panel); box-shadow: inset 0 0 0 1px var(--line); border-radius: 14px; padding: 14px 20px; display: grid; min-width: 140px; }
+.rev-stats b { font: 700 2rem/1.1 var(--display); color: var(--ink); }
+.rev-stats span { color: var(--mute); font-size: .92rem; }
+.rev-wall { columns: 2 420px; column-gap: 24px; }
+.rev-shot { break-inside: avoid; margin: 0 0 26px; display: grid; gap: 10px; }
+.rev-shot .proof-img { transform: none; }
+.rev-shot:nth-child(odd) .proof-img { transform: rotate(-.4deg); }
+.rev-shot:nth-child(even) .proof-img { transform: rotate(.4deg); }
+.rev-shot .proof-img:hover { transform: translateY(-3px); }
+.rev-shot figcaption { color: var(--mute); font-size: .92rem; }
+@media (max-width: 860px) { .rev-shot:nth-child(n) .proof-img { transform: none; } }
+.proof-more { grid-column: 1 / -1; justify-self: center; margin: 6px 0 0; }

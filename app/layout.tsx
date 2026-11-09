@@ -5,6 +5,7 @@ import "@fontsource-variable/onest";
 import "./globals.css";
 import Header from "@/components/Header";
 import { person } from "@/lib/content";
+import { hirePages } from "@/lib/hire";
 
 const SITE = process.env.NEXT_PUBLIC_SITE_URL || "https://sadaqatrasool.vercel.app";
 
@@ -104,6 +105,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <Link href="/contact">Contact</Link>
             </div>
           </div>
+          <nav className="wrap foot-hire" aria-label="Hire me as">
+            <span>Hire me as a</span>
+            {hirePages.map((h) => <Link key={h.slug} href={`/hire/${h.slug}`}>{h.short}</Link>)}
+          </nav>
         </footer>
       </body>
     </html>

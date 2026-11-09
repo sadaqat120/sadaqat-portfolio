@@ -444,6 +444,33 @@ export const quotes: Quote[] = [
     source: "Fiverr review",
     stars: 5,
   },
+  {
+    text: "Very good stuff! Amazing work! Great work again by Sadaqat.",
+    name: "Repeat client in Ireland",
+    role: "Ongoing collaboration, custom websites",
+    relation: "Client",
+    date: "2026",
+    source: "Fiverr reviews",
+    stars: 5,
+  },
+  {
+    text: "Very fast work. Good as always.",
+    name: "Repeat client in Belgium",
+    role: "Ongoing collaboration, data analysis in Python",
+    relation: "Client",
+    date: "2025",
+    source: "Fiverr reviews",
+    stars: 5,
+  },
+  {
+    text: "Incredibly patient and helpful.",
+    name: "Client in the United States",
+    role: "Bug fixes order",
+    relation: "Client",
+    date: "2024",
+    source: "Fiverr review",
+    stars: 5,
+  },
 ];
 
 export const services = [

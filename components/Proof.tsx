@@ -9,18 +9,18 @@ const shots = [
     cta: "See the post",
   },
   {
+    src: "/proof/fiverr-review.webp", w: 1100, h: 427,
+    alt: "Sadaqat Rasool's Fiverr profile with five-star reviews from repeat clients in Ireland",
+    label: "Repeat clients on Fiverr since 2024",
+    href: person.fiverr,
+    cta: "See all reviews on Fiverr",
+  },
+  {
     src: "/proof/linkedin-recommendations.webp", w: 1170, h: 342,
     alt: "LinkedIn recommendation from Georgios Cappon, Founder & Creative Director at Pixoyo: I would recommend Sadaqat without hesitation",
     label: "Recommendations on my LinkedIn profile",
     href: `${person.linkedin}details/recommendations/`,
     cta: "Read them on LinkedIn",
-  },
-  {
-    src: "/proof/fiverr-review.webp", w: 1100, h: 232,
-    alt: "A five-star Fiverr review from a client in Ireland for a custom website",
-    label: "Five-star reviews on Fiverr",
-    href: person.fiverr,
-    cta: "See all reviews on Fiverr",
   },
 ];
 
@@ -29,7 +29,7 @@ export default function Proof() {
   return (
     <div className="wrap proof-grid">
       {shots.map((s, i) => (
-        <figure className={`proof-shot ${i === 0 ? "proof-tall" : ""}`} key={s.src}>
+        <figure className={`proof-shot ${i === 2 ? "proof-wide" : ""}`} key={s.src}>
           <a href={s.href} target="_blank" rel="noopener" className="proof-img">
             <img src={s.src} alt={s.alt} width={s.w} height={s.h} loading="lazy" decoding="async" />
             <span className="sr"> (opens in a new tab)</span>

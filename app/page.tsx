@@ -93,7 +93,7 @@ export default function Home() {
         <div className="wrap">
           <div className="section-head">
             <h2>What clients say</h2>
-            <p>Four public recommendations on LinkedIn, a public credit from ThePeopleRating, and 14 five-star reviews on Fiverr from clients in Ireland, Belgium, the UK and the US. <a className="text-link" href={person.fiverr} target="_blank" rel="noopener">See all reviews on Fiverr<span className="sr"> (opens in a new tab)</span></a></p>
+            <p>Four public recommendations on LinkedIn, a public credit from ThePeopleRating, and 14 five-star reviews on Fiverr since 2024, many from repeat clients in Ireland and Belgium, plus clients in the UK and the US. <a className="text-link" href={person.fiverr} target="_blank" rel="noopener">See all reviews on Fiverr<span className="sr"> (opens in a new tab)</span></a></p>
           </div>
         </div>
         <Reviews quotes={quotes} />

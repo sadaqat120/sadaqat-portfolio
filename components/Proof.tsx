@@ -31,7 +31,7 @@ export default function Proof() {
   return (
     <div className="wrap proof-grid">
       {shots.map((s, i) => (
-        <figure className={`proof-shot ${i === 2 ? "proof-wide" : ""}`} key={s.src}>
+        <figure className={`proof-shot ${i === 0 ? "proof-tall" : ""}`} key={s.src}>
           <a href={s.href} target="_blank" rel="noopener" className="proof-img">
             <img src={s.src} alt={s.alt} width={s.w} height={s.h} loading="lazy" decoding="async" />
             <span className="sr"> (opens in a new tab)</span>

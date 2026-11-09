@@ -9,8 +9,8 @@ const shots = [
     cta: "See the post",
   },
   {
-    src: "/proof/linkedin-recommendations.webp", w: 880, h: 377,
-    alt: "LinkedIn recommendations from Richárd Kovács, CTO at HariKube, and Georgios Cappon, Founder of Pixoyo",
+    src: "/proof/linkedin-recommendations.webp", w: 1170, h: 342,
+    alt: "LinkedIn recommendation from Georgios Cappon, Founder & Creative Director at Pixoyo: I would recommend Sadaqat without hesitation",
     label: "Recommendations on my LinkedIn profile",
     href: `${person.linkedin}details/recommendations/`,
     cta: "Read them on LinkedIn",

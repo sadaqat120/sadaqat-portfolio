@@ -369,6 +369,14 @@ export const quotes: Quote[] = [
     source: "Public LinkedIn post",
   },
   {
+    text: "Built by Sadaqat Rasool: clean design, solid performance, fully accessible. Thanks for the work.",
+    name: "ThePeopleRating",
+    role: "Launching its new landing page",
+    relation: "Client",
+    date: "October 2026",
+    source: "Public LinkedIn post",
+  },
+  {
     text: "Working with Sadaqat was a real pleasure. He's not only a genuinely kind person, but also exceptionally sharp. He stepped in to fix several issues on my website and handled them with remarkable precision and deep technical knowledge. Everything was resolved cleanly, and I never had to worry about it.",
     name: "Georgios Cappon",
     role: "Founder & Creative Director, Pixoyo",

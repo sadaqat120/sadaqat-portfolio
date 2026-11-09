@@ -28,9 +28,9 @@ export default function Reviews({ quotes }: { quotes: Quote[] }) {
       {rows.map((row, i) => (
         <div className={`rv-row ${i ? "rv-rev" : ""}`} key={i}>
           <div className="rv-track">
-            {row.map((q) => <Card q={q} key={q.name} />)}
+            {row.map((q) => <Card q={q} key={q.name + q.date} />)}
             <div className="rv-dup" aria-hidden="true">
-              {row.map((q) => <Card q={q} key={q.name + "-dup"} />)}
+              {row.map((q) => <Card q={q} key={q.name + q.date + "-dup"} />)}
             </div>
           </div>
         </div>

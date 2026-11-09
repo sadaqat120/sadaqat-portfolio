@@ -4,7 +4,8 @@ import { person, services } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Services and prices",
-  description: "AI product advisors, web apps, business websites, fixes for live sites and white-label development. Fixed prices.",
+  description: "Hire Sadaqat Rasool: AI product advisors and chatbots, web apps and SaaS, business websites and fixes for live sites. Fixed prices, remote from Pakistan.",
+  alternates: { canonical: "/services" },
 };
 
 const steps = [

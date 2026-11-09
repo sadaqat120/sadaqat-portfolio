@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <>
       <section className="hero">
-        <div className="hero-portrait" aria-hidden="true"><img src="/sadaqat-lg.webp" alt="" /></div>
+        <div className="hero-portrait" aria-hidden="true"><img src="/sadaqat-lg.webp" alt="" width={920} height={920} fetchPriority="low" /></div>
         <div className="wrap hero-grid">
           <div>
             <div className="me">
@@ -92,7 +92,7 @@ export default function Home() {
         <div className="wrap">
           <div className="section-head">
             <h2>What clients say</h2>
-            <p>Four public recommendations on my LinkedIn profile, and reviews from Fiverr clients in Ireland and the UK.</p>
+            <p>Four public recommendations on LinkedIn, a public credit from ThePeopleRating, and 14 five-star reviews on Fiverr from clients in Ireland, Belgium, the UK and the US. <a className="text-link" href={person.fiverr} target="_blank" rel="noopener">See all reviews on Fiverr<span className="sr"> (opens in a new tab)</span></a></p>
           </div>
         </div>
         <Reviews quotes={quotes} />

@@ -15,7 +15,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: p.title,
     description: p.oneLine,
-    openGraph: p.cover ? { images: [{ url: p.cover.src, width: 1440, height: 900 }] } : undefined,
+    alternates: { canonical: `/work/${p.slug}` },
+    openGraph: { type: "article", title: `${p.title} | Sadaqat Rasool`, description: p.oneLine, url: `/work/${p.slug}`, ...(p.cover ? { images: [{ url: p.cover.src, width: 1440, height: 900, alt: p.cover.alt }] } : {}) },
   };
 }
 

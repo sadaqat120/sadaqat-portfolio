@@ -9,6 +9,7 @@ export const person = {
   whatsapp: "https://wa.me/923280473867",
   linkedin: "https://www.linkedin.com/in/sadaqatrasool/",
   github: "https://github.com/sadaqat120",
+  fiverr: "https://www.fiverr.com/sadaqat1081",
   location: "Islamabad, Pakistan (UTC+5)",
   hours: "Works in European, UK or US hours",
   cv: "/Sadaqat_Rasool_CV.pdf",
@@ -360,6 +361,14 @@ export type Quote = { text: string; name: string; role: string; relation: string
 
 export const quotes: Quote[] = [
   {
+    text: "The design was created by Sadaqat Rasool. Thank you for the great work and for the thought you put into the details.",
+    name: "ThePeopleRating",
+    role: "Announcing the app's new design to its users",
+    relation: "Client",
+    date: "November 2026",
+    source: "Public LinkedIn post",
+  },
+  {
     text: "Working with Sadaqat was a real pleasure. He's not only a genuinely kind person, but also exceptionally sharp. He stepped in to fix several issues on my website and handled them with remarkable precision and deep technical knowledge. Everything was resolved cleanly, and I never had to worry about it.",
     name: "Georgios Cappon",
     role: "Founder & Creative Director, Pixoyo",
@@ -404,6 +413,24 @@ export const quotes: Quote[] = [
     text: "He was perfect - went so far above and beyond. I would definitely recommend them!",
     name: "Client in the United Kingdom",
     role: "API and integrations order",
+    relation: "Client",
+    date: "2024",
+    source: "Fiverr review",
+    stars: 5,
+  },
+  {
+    text: "He was amazing to deal with, we will work again soon.",
+    name: "Repeat client in Ireland",
+    role: "Custom website orders",
+    relation: "Client",
+    date: "2026",
+    source: "Fiverr review",
+    stars: 5,
+  },
+  {
+    text: "Sadaqat did great. He understood my requirements and delivered quick results with fair price. Thanks!",
+    name: "Client in Pakistan",
+    role: "Bug fixes order",
     relation: "Client",
     date: "2024",
     source: "Fiverr review",

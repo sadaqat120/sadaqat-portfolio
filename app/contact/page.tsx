@@ -6,7 +6,8 @@ import { cvHref, hasCv } from "@/lib/cv";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "Email, LinkedIn, WhatsApp and GitHub for Sadaqat Rasool.",
+  description: "Contact Sadaqat Rasool, full-stack and AI developer in Islamabad, Pakistan: email, LinkedIn, WhatsApp, GitHub and Fiverr.",
+  alternates: { canonical: "/contact" },
 };
 
 export default function Contact() {

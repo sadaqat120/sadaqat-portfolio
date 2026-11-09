@@ -4,7 +4,8 @@ import { cvHref, cvLabel, hasCv } from "@/lib/cv";
 
 export const metadata: Metadata = {
   title: "About and experience",
-  description: "Experience, skills and education of Sadaqat Rasool, full-stack and AI developer open to remote roles.",
+  description: "About Sadaqat Rasool: full-stack and AI software engineer (Next.js, React, TypeScript, Node.js, Python) from Pakistan. Experience, skills, education and recommendations.",
+  alternates: { canonical: "/about" },
 };
 
 export default function About() {

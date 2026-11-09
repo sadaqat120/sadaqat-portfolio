@@ -4,7 +4,8 @@ import { projects } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Work",
-  description: "Client projects, my own AI product, working previews and open-source work by Sadaqat Rasool.",
+  description: "Projects by Sadaqat Rasool, full-stack and AI developer: client web apps, SaaS, AI product advisors, Next.js and React builds, and open-source work.",
+  alternates: { canonical: "/work" },
 };
 
 export default function Work() {

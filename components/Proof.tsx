@@ -2,47 +2,48 @@ import Link from "next/link";
 import { person } from "@/lib/content";
 import { proofCount } from "@/lib/proof";
 
-const shots = [
+const sources = [
   {
-    src: "/proof/thepeoplerating-post.webp", w: 824, h: 628,
-    alt: "ThePeopleRating's LinkedIn post: 'The design was created by Sadaqat Rasool. Thank you for the great work and for the thought you put into the details.'",
-    label: "ThePeopleRating credits my redesign on LinkedIn",
-    href: "https://www.linkedin.com/company/thepeoplerating/posts/",
-    cta: "See the post",
-  },
-  {
-    src: "/proof/fiverr-review.webp", w: 1100, h: 427,
-    alt: "Sadaqat Rasool's Fiverr profile with five-star reviews from repeat clients in Ireland",
-    label: "Repeat clients on Fiverr since 2024",
-    href: person.fiverr,
-    cta: "See all reviews on Fiverr",
-  },
-  {
-    src: "/proof/linkedin-recommendations.webp", w: 1170, h: 342,
-    alt: "LinkedIn recommendation from Georgios Cappon, Founder & Creative Director at Pixoyo: I would recommend Sadaqat without hesitation",
-    label: "Recommendations on my LinkedIn profile",
+    big: "4 recommendations",
+    small: "On LinkedIn, from a CTO, two founders and a senior consultant.",
     href: `${person.linkedin}details/recommendations/`,
     cta: "Read them on LinkedIn",
   },
+  {
+    big: "14 five-star reviews",
+    small: "On Fiverr since 2024, many from repeat clients in Ireland and Belgium.",
+    href: person.fiverr,
+    cta: "See them on Fiverr",
+  },
+  {
+    big: "2 public credits",
+    small: "ThePeopleRating thanked me on LinkedIn for its landing page and its redesign.",
+    href: "https://www.linkedin.com/company/thepeoplerating/posts/",
+    cta: "See the posts",
+  },
 ];
 
-// Screenshots of the original sources, each linked so anyone can check them.
+// One real screenshot that reads well at this size, plus the sources anyone can check.
 export default function Proof() {
   return (
     <div className="wrap proof-grid">
-      {shots.map((s, i) => (
-        <figure className={`proof-shot ${i === 0 ? "proof-tall" : ""}`} key={s.src}>
-          <a href={s.href} target="_blank" rel="noopener" className="proof-img">
-            <img src={s.src} alt={s.alt} width={s.w} height={s.h} loading="lazy" decoding="async" />
-            <span className="sr"> (opens in a new tab)</span>
+      <figure className="proof-shot">
+        <a href="https://www.linkedin.com/company/thepeoplerating/posts/" target="_blank" rel="noopener" className="proof-img">
+          <img src="/proof/thepeoplerating-post.webp" alt="ThePeopleRating's LinkedIn post: 'The design was created by Sadaqat Rasool. Thank you for the great work and for the thought you put into the details.'" width={824} height={628} loading="lazy" decoding="async" />
+          <span className="sr"> (opens in a new tab)</span>
+        </a>
+        <figcaption>ThePeopleRating announcing my redesign on LinkedIn</figcaption>
+      </figure>
+      <div className="proof-sources">
+        {sources.map((s) => (
+          <a key={s.big} className="proof-source" href={s.href} target="_blank" rel="noopener">
+            <b>{s.big}</b>
+            <span>{s.small}</span>
+            <em>{s.cta} &rarr;<span className="sr"> (opens in a new tab)</span></em>
           </a>
-          <figcaption>
-            <span>{s.label}</span>
-            <a className="text-link" href={s.href} target="_blank" rel="noopener">{s.cta}<span className="sr"> (opens in a new tab)</span></a>
-          </figcaption>
-        </figure>
-      ))}
-      <p className="proof-more"><Link className="btn btn-line" href="/reviews">See all {proofCount} review screenshots</Link></p>
+        ))}
+        <Link className="btn btn-line proof-all" href="/reviews">See all {proofCount} screenshots of the originals</Link>
+      </div>
     </div>
   );
 }

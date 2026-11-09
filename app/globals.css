@@ -315,3 +315,17 @@ p { margin: 0; }
 @keyframes meGlow { 50% { box-shadow: 0 0 0 7px rgba(46,163,107,.10), 0 12px 30px -10px rgba(0,0,0,.6); } }
 .work-list > * { animation: rise .7s cubic-bezier(.2,.7,.2,1) both; animation-timeline: view(); animation-range: entry 0% cover 25%; }
 @keyframes rise { from { opacity: 0; transform: translateY(40px) scale(.98); } to { opacity: 1; transform: none; } }
+
+/* Proof: screenshots of the original reviews and credits */
+.proof-grid { display: grid; grid-template-columns: 1.05fr 1fr; grid-template-rows: auto auto; gap: 22px; margin-top: 40px; }
+.proof-shot { margin: 0; display: grid; gap: 12px; align-content: start; }
+.proof-tall { grid-row: span 2; }
+.proof-img { display: block; border-radius: 16px; overflow: hidden; background: #fff; box-shadow: 0 0 0 1px var(--line), 0 24px 60px -30px rgba(0,0,0,.55); transform: rotate(-.6deg); transition: transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s; }
+.proof-shot:nth-child(2) .proof-img { transform: rotate(.5deg); }
+.proof-shot:nth-child(3) .proof-img { transform: rotate(-.3deg); }
+.proof-img:hover, .proof-img:focus-visible { transform: rotate(0) translateY(-4px); box-shadow: 0 0 0 2px var(--pine), 0 30px 70px -30px rgba(0,0,0,.6); }
+.proof-img img { display: block; width: 100%; height: auto; }
+.proof-shot figcaption { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 16px; font-size: .95rem; }
+.proof-shot figcaption span { color: var(--mute); }
+@media (max-width: 860px) { .proof-grid { grid-template-columns: 1fr; } .proof-tall { grid-row: auto; } .proof-img, .proof-shot:nth-child(n) .proof-img { transform: none; } }
+@media (prefers-reduced-motion: reduce) { .proof-img { transition: none; } }

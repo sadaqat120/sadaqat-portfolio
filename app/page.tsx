@@ -3,6 +3,7 @@ import { featured, person, quotes, services } from "@/lib/content";
 import WorkRow from "@/components/WorkRow";
 import Stage from "@/components/Stage";
 import Reviews from "@/components/Reviews";
+import Proof from "@/components/Proof";
 import { cvHref, hasCv } from "@/lib/cv";
 
 
@@ -96,6 +97,7 @@ export default function Home() {
           </div>
         </div>
         <Reviews quotes={quotes} />
+        <Proof />
       </section>
 
       <section className="cta-band">

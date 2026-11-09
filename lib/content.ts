@@ -377,7 +377,7 @@ export const quotes: Quote[] = [
     source: "Public LinkedIn post",
   },
   {
-    text: "Working with Sadaqat was a real pleasure. He's not only a genuinely kind person, but also exceptionally sharp. He stepped in to fix several issues on my website and handled them with remarkable precision and deep technical knowledge. Everything was resolved cleanly, and I never had to worry about it.",
+    text: "Working with Sadaqat was a real pleasure. He's not only a genuinely kind person, but also exceptionally sharp. He stepped in to fix several issues on my website and handled them with remarkable precision and deep technical knowledge. Everything was resolved cleanly, and I never had to worry about it. If you have a coding or development project, I'd recommend Sadaqat without hesitation.",
     name: "Georgios Cappon",
     role: "Founder & Creative Director, Pixoyo",
     relation: "Client",
@@ -393,7 +393,7 @@ export const quotes: Quote[] = [
     source: "LinkedIn recommendation",
   },
   {
-    text: "Sadaqat reached out with a sharp review of our SignalVerified demo, looked at from an HR buyer's point of view. Within minutes, he spotted clear, specific issues, from a score mismatch to how our AI wording reads to buyers, and explained why each one mattered. Fast, thoughtful, and genuinely useful.",
+    text: "Sadaqat reached out with a sharp review of our SignalVerified demo, looked at from an HR buyer's point of view. Within minutes, he spotted clear, specific issues, from a score mismatch to how our AI wording reads to buyers, and explained why each one mattered. Fast, thoughtful, and genuinely useful. Very grateful for the second set of human eyes.",
     name: "Michael A. Campbell, Ed.D.",
     role: "Founder & CEO, SignalVerified; former Intel GM",
     relation: "Client",
@@ -401,7 +401,7 @@ export const quotes: Quote[] = [
     source: "LinkedIn recommendation",
   },
   {
-    text: "He quickly understood the concept and turned it into a clean, modern, and professional design. He was responsive, easy to work with, and open to feedback throughout the process.",
+    text: "He quickly understood the concept and turned it into a clean, modern, and professional design. He was responsive, easy to work with, and open to feedback throughout the process. I would gladly recommend Sadaqat for web design and development projects.",
     name: "Alexandre Konioukhov",
     role: "Senior .NET Consultant",
     relation: "Client",

@@ -2,11 +2,11 @@ import Link from "next/link";
 import { featured, person, quotes, services } from "@/lib/content";
 import WorkRow from "@/components/WorkRow";
 import Stage from "@/components/Stage";
-import Reviews from "@/components/Reviews";
-import Proof from "@/components/Proof";
 import { cvHref, hasCv } from "@/lib/cv";
 
 
+
+const topQuotes = quotes.filter((q) => ["Georgios Cappon", "Michael A. Campbell, Ed.D.", "Alexandre Konioukhov"].includes(q.name));
 
 export default function Home() {
   return (
@@ -93,11 +93,18 @@ export default function Home() {
         <div className="wrap">
           <div className="section-head">
             <h2>What clients say</h2>
-            <p>Four public recommendations on LinkedIn, a public credit from ThePeopleRating, and 14 five-star reviews on Fiverr since 2024, many from repeat clients in Ireland and Belgium, plus clients in the UK and the US. <a className="text-link" href={person.fiverr} target="_blank" rel="noopener">See all reviews on Fiverr<span className="sr"> (opens in a new tab)</span></a></p>
+            <p>4 recommendations on LinkedIn, 14 five-star reviews on Fiverr and 2 public client credits. Every one is real and you can check the original.</p>
           </div>
+          <div className="quotes">
+            {topQuotes.map((q) => (
+              <figure className="quote" key={q.name}>
+                <blockquote>&ldquo;{q.text}&rdquo;</blockquote>
+                <figcaption><b>{q.name}</b><span>{q.role}. {q.source}.</span></figcaption>
+              </figure>
+            ))}
+          </div>
+          <p style={{ marginTop: 32 }}><Link className="text-link" href="/reviews">Read all reviews and see the original screenshots</Link></p>
         </div>
-        <Reviews quotes={quotes} />
-        <Proof />
       </section>
 
       <section className="cta-band">

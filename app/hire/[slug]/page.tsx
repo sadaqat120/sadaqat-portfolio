@@ -27,7 +27,7 @@ export default async function Hire({ params }: { params: Promise<{ slug: string 
   const h = getHire(slug);
   if (!h) notFound();
   const work = h.projects.map(getProject).filter((p): p is NonNullable<typeof p> => Boolean(p));
-  const featuredQuotes = quotes.filter((q) => q.source === "LinkedIn recommendation").slice(0, 3);
+  const featuredQuotes = quotes.filter((q) => q.source === "LinkedIn recommendation").slice(0, 1);
   const others = hirePages.filter((x) => x.slug !== h.slug);
 
   const ld = {

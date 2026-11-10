@@ -1,5 +1,6 @@
+import Link from "next/link";
 import type { Metadata } from "next";
-import { education, experience, person, quotes, skills } from "@/lib/content";
+import { education, experience, person, skills } from "@/lib/content";
 import { cvHref, cvLabel, hasCv } from "@/lib/cv";
 
 export const metadata: Metadata = {
@@ -69,15 +70,7 @@ export default function About() {
 
       <section className="section" style={{ paddingTop: 0 }}>
         <div className="wrap">
-          <div className="section-head"><h2>Recommendations</h2><p>Four are public on my LinkedIn profile; two are reviews from Fiverr clients.</p></div>
-          <div className="quotes">
-            {quotes.map((q) => (
-              <figure className="quote" key={q.name}>
-                <blockquote>&ldquo;{q.text}&rdquo;</blockquote>
-                <figcaption><b>{q.name}</b><span>{q.role}. {q.source}, {q.date}.</span></figcaption>
-              </figure>
-            ))}
-          </div>
+          <div className="section-head"><h2>Recommendations</h2><p>4 public recommendations on LinkedIn and 14 five-star reviews on Fiverr. <Link className="text-link" href="/reviews">Read them all, with the original screenshots</Link>.</p></div>
         </div>
       </section>
     </>

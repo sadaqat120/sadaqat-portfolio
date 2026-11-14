@@ -78,12 +78,13 @@ tr:last-child td{border-bottom:0}
 td.r-A{color:var(--acc)}td.r-B{color:var(--acc)}
 .s-VALID{color:var(--valid);font-weight:700}.s-REVOKED{color:var(--rev);font-weight:700}
 .empty{padding:16px;color:var(--mut);font:13px var(--mono)}
+.rec{margin-top:16px}.recnote{color:var(--mut);font-size:14px;margin:0 0 10px;max-width:820px}.recnote b{color:var(--ink)}.rt{min-width:620px}.rt th{width:34%}.rt td,.rt th{font-size:13px}.pass{color:var(--valid);font-weight:800}.fail{color:var(--rev);font-weight:800}
 footer{margin-top:28px;color:var(--mut);font-size:13px;border-top:1px solid var(--line);padding-top:14px}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style></head>
 <body><div class="wrap">
 
-<div class="kicker">Governance Physics™ · Test 1 · Prototype v1</div>
+<div class="kicker">Governance Physics™ · Test 1 · Prototype v1.1</div>
 <h1>Authority must survive the path to consequence</h1>
 <p class="lede">One mandate, one payment, one revocation event, one consequence boundary. Both runs receive the same events. The only difference is <b>when</b> each run asks whether authority still has standing.</p>
 <div class="quote"><b>“A consequence is not governed because authority once existed. It is governed only if the required authority still has standing when the consequence forms.”</b><span>Keith Crockett, Governance Physics™</span></div>
@@ -138,6 +139,12 @@ footer{margin-top:28px;color:var(--mut);font-size:13px;border-top:1px solid var(
 
 <section class="card distinction" id="dist" aria-live="polite"></section>
 
+<section class="card rec" id="rec" aria-labelledby="rech" hidden>
+  <h2 id="rech">Test record</h2>
+  <p class="recnote">Expected outcome is derived from one rule, written before the run: <b>the payment may be released only if the mandate has standing in the registry at the consequence boundary.</b> Each run is then judged against that rule.</p>
+  <div class="tbl"><table class="rt"><tbody id="recBody"></tbody></table></div>
+</section>
+
 <section class="card log" aria-labelledby="lh">
   <div class="loghead"><h2 id="lh" style="margin:0">Event log</h2>
     <div style="display:flex;gap:8px"><button id="btnCopy" disabled>Copy log</button><button id="btnDl" disabled>Download JSON</button></div></div>
@@ -145,7 +152,7 @@ footer{margin-top:28px;color:var(--mut);font-size:13px;border-top:1px solid var(
   <tbody id="log"><tr><td colspan="6" class="empty">No events yet. Press “Run the test” or “Step”.</td></tr></tbody></table></div>
 </section>
 
-<footer>Prototype v1 built by Sadaqat Rasool for Keith Crockett. Deterministic simulation: no real payment, no external service, no AI model; every state change is written to the log above so the result can be examined afterward.</footer>
+<footer>Prototype v1.1 built by Sadaqat Rasool for Keith Crockett. Deterministic simulation: no real payment, no external service, no AI model; every state change is written to the log above so the result can be examined afterward.</footer>
 </div>
 
 <script>
@@ -178,7 +185,7 @@ function reset(){
  setState($("payA"),"st-none","NOT RELEASED");setState($("payB"),"st-none","NOT RELEASED");
  ["c1","c2","c3"].forEach(function(c){var e=$(c);e.className="tick";e.textContent="·"});
  ["outA","outB"].forEach(function(o){var e=$(o);e.className="outcome";e.innerHTML=""});
- $("dist").className="card distinction";$("dist").innerHTML="";
+ $("dist").className="card distinction";$("dist").innerHTML="";$("rec").hidden=true;$("recBody").innerHTML="";S.record=null;
  $("log").innerHTML='<tr><td colspan="6" class="empty">No events yet. Press “Run the test” or “Step”.</td></tr>';
  $("btnCopy").disabled=true;$("btnDl").disabled=true;$("btnRun").disabled=false;$("btnStep").disabled=false;$("revoke").disabled=false;
  queue=plan();qi=0;
@@ -222,7 +229,33 @@ function plan(){var revoke=$("revoke").checked;var p=[];
   finish(revoke)});
  return p}
 
+function buildRecord(revoked){
+ var grant=S.log.find(function(e){return e.event==="MANDATE_GRANTED"});
+ var rev=S.log.find(function(e){return e.event==="MANDATE_REVOKED"});
+ var atB=S.registry;var expected=atB==="VALID"?"RELEASE":"DO NOT RELEASE";
+ function run(id,rule,seen,paid){var obs=paid?"RELEASED":"NOT RELEASED";var ok=(expected==="RELEASE")===paid;
+  return {run:id,rule:rule,authority_used_at_commit:seen,observed_outcome:obs,verdict:ok?"PASS":"FAIL"}}
+ S.record={case:revoked?"Mutation case: authority changes before commit; consequence must not form":"Control case: authority remains valid through commit; consequence may form",
+  inputs:{delegating_authority:"Dana Reyes, Financial Controller",mandate_holder:"Payments Agent",payment:"PMT-0042, EUR 48,500 to Northwind Supplies BV",
+   policy_conditions:["amount <= EUR 50,000","payee on approved supplier list","mandate not revoked by delegating authority"],revocation_before_commit:revoked},
+  initial_authority_state:"VALID",initial_authority_timestamp:grant?grant.timestamp:null,
+  revocation_event:rev?{event:"MANDATE_REVOKED",timestamp:rev.timestamp,by:"Dana Reyes",reason:"invoice under dispute"}:"none",
+  authority_state_at_consequence_boundary:atB,expected_governance_outcome:expected,
+  runs:[run("A","checks authority only at initiation",S.seenA,S.payA),run("B","re-evaluates authority at the consequence boundary",S.seenB,S.payB)]};
+ var r=S.record,h="";function row(k,v){h+="<tr><th>"+k+"</th><td colspan='2'>"+v+"</td></tr>"}
+ row("Case",r.case);
+ row("Inputs","PMT-0042, €48,500 → Northwind Supplies BV. Mandate: Dana Reyes → Payments Agent. Conditions: amount ≤ €50,000; payee approved; not revoked.");
+ row("Initial authority state","<span class='s-VALID'>VALID</span> at "+r.initial_authority_timestamp);
+ row("Revocation event",rev?"<span class='s-REVOKED'>MANDATE_REVOKED</span> at "+rev.timestamp+" by Dana Reyes (invoice under dispute)":"None (control)");
+ row("Authority state at consequence boundary","<span class='s-"+atB+"'>"+atB+"</span>");
+ row("Expected governance outcome","<b>"+expected+"</b>");
+ h+="<tr><th>Run</th><th>Observed outcome</th><th>Result</th></tr>";
+ r.runs.forEach(function(x){h+="<tr><td>Run "+x.run+" ("+x.rule+")</td><td>"+x.observed_outcome+"</td><td class='"+(x.verdict==="PASS"?"pass":"fail")+"'>"+x.verdict+"</td></tr>"});
+ $("recBody").innerHTML=h;$("rec").hidden=false;
+ log("RECORD","TEST_VERDICT",atB,"Expected: "+expected+". Run A: "+r.runs[0].observed_outcome+" → "+r.runs[0].verdict+". Run B: "+r.runs[1].observed_outcome+" → "+r.runs[1].verdict+".");
+}
 function finish(revoked){
+ buildRecord(revoked);
  var oa=$("outA"),ob=$("outB"),d=$("dist");
  if(revoked){
   stepMark("A","commit","bad","Committed using authority checked at initiation");
@@ -247,7 +280,7 @@ $("btnRun").addEventListener("click",function(){if(timer)return;$("btnRun").disa
 $("btnStep").addEventListener("click",function(){next()});
 $("btnReset").addEventListener("click",reset);
 $("revoke").addEventListener("change",reset);
-function json(){return JSON.stringify({test:"Governance Physics Test 1: authority must survive the path to consequence",scenario:{mandate_by:"Dana Reyes, Financial Controller",holder:"Payments Agent",payment:"PMT-0042 EUR 48,500 to Northwind Supplies BV",revocation_before_commit:$("revoke").checked},events:S.log},null,2)}
+function json(){return JSON.stringify({test:"Governance Physics Test 1: authority must survive the path to consequence",scenario:{mandate_by:"Dana Reyes, Financial Controller",holder:"Payments Agent",payment:"PMT-0042 EUR 48,500 to Northwind Supplies BV",revocation_before_commit:$("revoke").checked},test_record:S.record,events:S.log},null,2)}
 $("btnCopy").addEventListener("click",function(){var b=this;try{navigator.clipboard.writeText(json()).then(function(){b.textContent="Copied";setTimeout(function(){b.textContent="Copy log"},1500)})}catch(e){}});
 $("btnDl").addEventListener("click",function(){var a=document.createElement("a");a.href=URL.createObjectURL(new Blob([json()],{type:"application/json"}));a.download="authority-test-1-log.json";a.click()});
 reset();

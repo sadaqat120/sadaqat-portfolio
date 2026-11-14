@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Authority at the Consequence Boundary · Test 1</title>
+<meta name="description" content="Test 1: a payment mandate is revoked before commit. Run A checks authority only at initiation; Run B re-evaluates it at the consequence boundary.">
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--ink:#14181f;--mut:#5b6472;--line:#e2e6ec;--soft:#eef1f5;
+--valid:#0f7a4a;--valid-l:#e3f4ec;--rev:#b42318;--rev-l:#fdecea;--warn:#9a5b00;--warn-l:#fff4e0;--acc:#1f3b73;--acc-l:#e8eef9;
+--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace}
+@media (prefers-color-scheme:dark){:root{--bg:#0e1116;--card:#161b22;--ink:#e6edf3;--mut:#9aa6b2;--line:#2a313b;--soft:#1c222b;
+--valid:#3fb57a;--valid-l:#13281e;--rev:#f0705f;--rev-l:#2c1614;--warn:#e0a640;--warn-l:#2a2010;--acc:#8fb0ff;--acc-l:#18223a}}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 Inter,"Segoe UI",system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif}
+.wrap{max-width:1120px;margin:0 auto;padding:22px 16px 60px}
+.kicker{font:700 12px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--acc)}
+h1{font-size:clamp(24px,3.6vw,36px);line-height:1.15;margin:10px 0 8px;letter-spacing:-.01em}
+.lede{color:var(--mut);max-width:760px;margin:0 0 18px}
+.quote{border-left:3px solid var(--acc);padding:6px 0 6px 14px;margin:0 0 20px;max-width:760px}
+.quote b{display:block}.quote span{color:var(--mut);font-size:13px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+.top{display:grid;grid-template-columns:1.3fr 1fr;gap:14px}
+@media(max-width:820px){.top{grid-template-columns:1fr}}
+h2{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--mut);margin:0 0 10px}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:14px}.kv dt{color:var(--mut)}.kv dd{margin:0}
+.conds{margin:10px 0 0;padding:0;list-style:none;display:grid;gap:6px}
+.conds li{display:flex;gap:8px;align-items:center;font-size:14px}
+.tick{width:18px;height:18px;border-radius:50%;display:inline-grid;place-items:center;font-size:11px;font-weight:800;flex:none;background:var(--soft);color:var(--mut)}
+.tick.ok{background:var(--valid-l);color:var(--valid)}.tick.no{background:var(--rev-l);color:var(--rev)}
+.state{display:inline-flex;align-items:center;gap:8px;font:800 13px/1 var(--mono);letter-spacing:.06em;padding:8px 12px;border-radius:8px;border:1px solid}
+.st-none{color:var(--mut);background:var(--soft);border-color:var(--line)}
+.st-valid{color:var(--valid);background:var(--valid-l);border-color:currentColor}
+.st-rev{color:var(--rev);background:var(--rev-l);border-color:currentColor}
+.dot{width:8px;height:8px;border-radius:50%;background:currentColor}
+.reg{display:flex;flex-direction:column;gap:10px}
+.reg small{color:var(--mut)}
+.controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:16px 0}
+button{font:inherit;font-weight:700;border-radius:10px;padding:10px 16px;cursor:pointer;border:1px solid var(--line);background:var(--card);color:var(--ink);min-height:44px}
+button.primary{background:var(--acc);border-color:var(--acc);color:#fff}
+@media (prefers-color-scheme:dark){button.primary{color:#0e1116}}
+button:disabled{opacity:.45;cursor:not-allowed}
+button:focus-visible,input:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+label.tg{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--mut);cursor:pointer;margin-left:auto}
+label.tg input{width:18px;height:18px}
+.runs{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:820px){.runs{grid-template-columns:1fr}}
+.run h3{margin:0;font-size:18px}.run .rule{color:var(--mut);font-size:14px;margin:2px 0 12px}
+.seen{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:12px}
+.seen span{font-size:13px;color:var(--mut)}
+.steps{list-style:none;margin:0;padding:0;position:relative}
+.steps li{position:relative;padding:0 0 14px 30px;color:var(--mut);font-size:14px}
+.steps li::before{content:"";position:absolute;left:7px;top:18px;bottom:0;width:2px;background:var(--line)}
+.steps li:last-child::before{display:none}
+.steps li i{position:absolute;left:0;top:3px;width:16px;height:16px;border-radius:50%;border:2px solid var(--line);background:var(--card)}
+.steps li.done{color:var(--ink)}.steps li.done i{border-color:var(--acc);background:var(--acc)}
+.steps li.now i{border-color:var(--acc);box-shadow:0 0 0 4px var(--acc-l)}
+.steps li.bad{color:var(--rev)}.steps li.bad i{border-color:var(--rev);background:var(--rev)}
+.steps li.good{color:var(--valid)}.steps li.good i{border-color:var(--valid);background:var(--valid)}
+.steps li b{font-weight:700}.steps li em{display:block;font-style:normal;font-size:12.5px;color:var(--mut)}
+.boundary{font:800 11px/1 var(--mono);letter-spacing:.08em;color:var(--warn);background:var(--warn-l);padding:4px 6px;border-radius:5px;margin-left:6px}
+.pay{display:flex;justify-content:space-between;align-items:center;gap:10px;background:var(--soft);border-radius:10px;padding:12px;margin-top:4px}
+.pay .amt{font:800 18px/1 var(--mono)}.pay small{display:block;color:var(--mut);font-size:12px;margin-top:4px}
+.outcome{margin-top:12px;border-radius:10px;padding:12px 14px;font-size:14.5px;display:none}
+.outcome.show{display:block}
+.outcome.bad{background:var(--rev-l);color:var(--rev);border:1px solid var(--rev)}
+.outcome.good{background:var(--valid-l);color:var(--valid);border:1px solid var(--valid)}
+.outcome.neutral{background:var(--warn-l);color:var(--warn);border:1px solid var(--warn)}
+.outcome b{display:block;font-size:16px;margin-bottom:2px}
+.distinction{margin:16px 0;display:none}
+.distinction.show{display:block}
+.distinction p{margin:4px 0;font-size:16px}
+.log{margin-top:16px}
+.loghead{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:10px}
+table{border-collapse:collapse;width:100%;font:12.5px/1.45 var(--mono);min-width:760px}
+td:first-child{white-space:nowrap}th,td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--soft);color:var(--mut);font-weight:700;position:sticky;top:0}
+tr:last-child td{border-bottom:0}
+td.r-A{color:var(--acc)}td.r-B{color:var(--acc)}
+.s-VALID{color:var(--valid);font-weight:700}.s-REVOKED{color:var(--rev);font-weight:700}
+.empty{padding:16px;color:var(--mut);font:13px var(--mono)}
+footer{margin-top:28px;color:var(--mut);font-size:13px;border-top:1px solid var(--line);padding-top:14px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style></head>
+<body><div class="wrap">
+
+<div class="kicker">Governance Physics™ · Test 1 · Prototype v1</div>
+<h1>Authority must survive the path to consequence</h1>
+<p class="lede">One mandate, one payment, one revocation event, one consequence boundary. Both runs receive the same events. The only difference is <b>when</b> each run asks whether authority still has standing.</p>
+<div class="quote"><b>“A consequence is not governed because authority once existed. It is governed only if the required authority still has standing when the consequence forms.”</b><span>Keith Crockett, Governance Physics™</span></div>
+
+<div class="top">
+  <section class="card" aria-labelledby="mh">
+    <h2 id="mh">Mandate and policy</h2>
+    <dl class="kv">
+      <dt>Delegating authority</dt><dd>Dana Reyes, Financial Controller</dd>
+      <dt>Mandate holder</dt><dd>Payments Agent (automated)</dd>
+      <dt>Mandate</dt><dd>Release supplier payments within policy conditions</dd>
+      <dt>Request</dt><dd>Release PMT-0042: <b>€48,500</b> to Northwind Supplies BV</dd>
+    </dl>
+    <ul class="conds" aria-label="Policy conditions">
+      <li><span class="tick" id="c1">·</span>Amount ≤ €50,000</li>
+      <li><span class="tick" id="c2">·</span>Payee is on the approved supplier list</li>
+      <li><span class="tick" id="c3">·</span>Mandate has not been revoked by the delegating authority</li>
+    </ul>
+  </section>
+  <section class="card reg" aria-labelledby="rh">
+    <h2 id="rh">Authority registry (actual state)</h2>
+    <div id="regState" class="state st-none"><span class="dot"></span>NOT GRANTED</div>
+    <small id="regNote">The registry is the source of truth. The policy defines when the mandate has standing.</small>
+  </section>
+</div>
+
+<div class="controls">
+  <button class="primary" id="btnRun">Run the test</button>
+  <button id="btnStep">Step</button>
+  <button id="btnReset">Reset</button>
+  <label class="tg"><input type="checkbox" id="revoke" checked> Revoke the mandate before commit</label>
+</div>
+
+<div class="runs">
+  <section class="card run" aria-labelledby="ah">
+    <h3 id="ah">Run A</h3>
+    <p class="rule">Checks authority <b>only at initiation</b>, then carries that result to commit.</p>
+    <div class="seen"><span>Authority state as seen by Run A</span><div id="seenA" class="state st-none"><span class="dot"></span>NOT CHECKED</div></div>
+    <ol class="steps" id="stepsA"></ol>
+    <div class="pay"><div><div class="amt">€48,500</div><small>PMT-0042 → Northwind Supplies BV</small></div><div id="payA" class="state st-none"><span class="dot"></span>NOT RELEASED</div></div>
+    <div class="outcome" id="outA" role="status"></div>
+  </section>
+  <section class="card run" aria-labelledby="bh">
+    <h3 id="bh">Run B</h3>
+    <p class="rule">Re-evaluates authority <b>at the consequence boundary</b>, immediately before commit.</p>
+    <div class="seen"><span>Authority state as seen by Run B</span><div id="seenB" class="state st-none"><span class="dot"></span>NOT CHECKED</div></div>
+    <ol class="steps" id="stepsB"></ol>
+    <div class="pay"><div><div class="amt">€48,500</div><small>PMT-0042 → Northwind Supplies BV</small></div><div id="payB" class="state st-none"><span class="dot"></span>NOT RELEASED</div></div>
+    <div class="outcome" id="outB" role="status"></div>
+  </section>
+</div>
+
+<section class="card distinction" id="dist" aria-live="polite"></section>
+
+<section class="card log" aria-labelledby="lh">
+  <div class="loghead"><h2 id="lh" style="margin:0">Event log</h2>
+    <div style="display:flex;gap:8px"><button id="btnCopy" disabled>Copy log</button><button id="btnDl" disabled>Download JSON</button></div></div>
+  <div class="tbl"><table><thead><tr><th>Timestamp (UTC)</th><th>Seq</th><th>Run</th><th>Event</th><th>Authority seen</th><th>Detail</th></tr></thead>
+  <tbody id="log"><tr><td colspan="6" class="empty">No events yet. Press “Run the test” or “Step”.</td></tr></tbody></table></div>
+</section>
+
+<footer>Prototype v1 built by Sadaqat Rasool for Keith Crockett. Deterministic simulation: no real payment, no external service, no AI model; every state change is written to the log above so the result can be examined afterward.</footer>
+</div>
+
+<script>
+(function(){
+"use strict";
+var STEPS=[
+ {k:"init",t:"Request received and initiated",d:"PMT-0042, €48,500"},
+ {k:"check",t:"Authority check at initiation",d:"Registry and policy evaluated"},
+ {k:"exec",t:"Execution",d:"Invoice validated, funds reserved, transfer prepared"},
+ {k:"boundary",t:"Consequence boundary",d:"Commit requested",b:true},
+ {k:"commit",t:"Commit decision",d:""}
+];
+function $(id){return document.getElementById(id)}
+var S, timer=null, queue=[], qi=0;
+
+function buildSteps(id){var ol=$(id);ol.innerHTML="";STEPS.forEach(function(s,i){var li=document.createElement("li");li.dataset.k=s.k;
+ li.innerHTML="<i></i><b>"+s.t+"</b>"+(s.b?'<span class="boundary">BOUNDARY</span>':"")+"<em>"+s.d+"</em>";ol.appendChild(li)})}
+function setState(el,cls,txt){el.className="state "+cls;el.innerHTML='<span class="dot"></span>'+txt}
+function stepMark(run,k,cls,detail){var li=document.querySelector("#steps"+run+' li[data-k="'+k+'"]');if(!li)return;
+ document.querySelectorAll("#steps"+run+" li.now").forEach(function(x){x.classList.remove("now")});
+ li.classList.add(cls||"done");if(!cls||cls==="done")li.classList.add("now");if(detail)li.querySelector("em").textContent=detail}
+function tick(id,ok){var e=$(id);e.className="tick "+(ok?"ok":"no");e.textContent=ok?"✓":"✕"}
+
+function reset(){
+ if(timer){clearTimeout(timer);timer=null}
+ S={registry:"NONE",seenA:"NONE",seenB:"NONE",payA:false,payB:false,seq:0,log:[],revokedAt:null,started:false};
+ buildSteps("stepsA");buildSteps("stepsB");
+ setState($("regState"),"st-none","NOT GRANTED");$("regNote").textContent="The registry is the source of truth. The policy defines when the mandate has standing.";
+ setState($("seenA"),"st-none","NOT CHECKED");setState($("seenB"),"st-none","NOT CHECKED");
+ setState($("payA"),"st-none","NOT RELEASED");setState($("payB"),"st-none","NOT RELEASED");
+ ["c1","c2","c3"].forEach(function(c){var e=$(c);e.className="tick";e.textContent="·"});
+ ["outA","outB"].forEach(function(o){var e=$(o);e.className="outcome";e.innerHTML=""});
+ $("dist").className="card distinction";$("dist").innerHTML="";
+ $("log").innerHTML='<tr><td colspan="6" class="empty">No events yet. Press “Run the test” or “Step”.</td></tr>';
+ $("btnCopy").disabled=true;$("btnDl").disabled=true;$("btnRun").disabled=false;$("btnStep").disabled=false;$("revoke").disabled=false;
+ queue=plan();qi=0;
+}
+
+function log(run,ev,seen,detail){
+ if(S.seq===0)$("log").innerHTML="";
+ S.seq++;var e={timestamp:new Date().toISOString(),seq:S.seq,run:run,event:ev,authority_seen:seen||"",detail:detail||""};S.log.push(e);
+ var tr=document.createElement("tr");
+ tr.innerHTML="<td>"+e.timestamp+"</td><td>"+e.seq+"</td><td class='r-"+run+"'>"+run+"</td><td>"+ev+"</td><td class='s-"+e.authority_seen+"'>"+(e.authority_seen||"–")+"</td><td>"+detail+"</td>";
+ $("log").appendChild(tr);$("btnCopy").disabled=false;$("btnDl").disabled=false;
+}
+
+function policyHolds(){return S.registry==="VALID"}
+
+function plan(){var revoke=$("revoke").checked;var p=[];
+ p.push(function(){S.registry="VALID";setState($("regState"),"st-valid","VALID");$("regNote").textContent="Mandate granted by Dana Reyes, Financial Controller.";
+  tick("c1",true);tick("c2",true);tick("c3",true);
+  log("REGISTRY","MANDATE_GRANTED","VALID","Delegating authority: Dana Reyes, Financial Controller → Payments Agent. Conditions: amount ≤ €50,000; payee approved; not revoked.")});
+ p.push(function(){["A","B"].forEach(function(r){stepMark(r,"init")});log("A","REQUEST_INITIATED","","PMT-0042 €48,500 → Northwind Supplies BV");log("B","REQUEST_INITIATED","","PMT-0042 €48,500 → Northwind Supplies BV")});
+ p.push(function(){var v=policyHolds()?"VALID":"REVOKED";
+  S.seenA=v;S.seenB=v;setState($("seenA"),"st-valid",v);setState($("seenB"),"st-valid",v);
+  ["A","B"].forEach(function(r){stepMark(r,"check","done","Result: "+v)});
+  log("A","AUTHORITY_CHECK_AT_INITIATION",v,"Result stored and carried to commit");log("B","AUTHORITY_CHECK_AT_INITIATION",v,"Result recorded; will be re-evaluated at the boundary")});
+ p.push(function(){["A","B"].forEach(function(r){stepMark(r,"exec")});log("A","EXECUTION_STARTED",S.seenA,"Invoice validated, funds reserved, transfer prepared");log("B","EXECUTION_STARTED",S.seenB,"Invoice validated, funds reserved, transfer prepared")});
+ if(revoke)p.push(function(){S.registry="REVOKED";S.revokedAt=new Date().toISOString();setState($("regState"),"st-rev","REVOKED");
+  $("regNote").textContent="Revoked by Dana Reyes at "+S.revokedAt.replace("T"," ").replace("Z"," UTC")+". Reason: invoice under dispute.";tick("c3",false);
+  log("REGISTRY","MANDATE_REVOKED","REVOKED","Revoked by the delegating authority before commit. Reason: invoice under dispute.")});
+ p.push(function(){["A","B"].forEach(function(r){stepMark(r,"boundary")});log("A","CONSEQUENCE_BOUNDARY_REACHED",S.seenA,"Commit requested");log("B","CONSEQUENCE_BOUNDARY_REACHED",S.seenB,"Commit requested")});
+ p.push(function(){
+  // Run A: uses the stored result from initiation
+  log("A","COMMIT_AUTHORIZED_FROM_STORED_CHECK",S.seenA,"No re-evaluation. Registry at this moment: "+S.registry);
+  S.payA=true;setState($("payA"),"st-rev","RELEASED");
+  // Run B: re-evaluates the registry and policy now
+  var now=policyHolds()?"VALID":"REVOKED";S.seenB=now;setState($("seenB"),now==="VALID"?"st-valid":"st-rev",now);
+  log("B","AUTHORITY_REEVALUATED_AT_BOUNDARY",now,"Registry at this moment: "+S.registry);
+  if(now==="VALID"){S.payB=true;setState($("payB"),"st-valid","RELEASED");log("B","COMMIT_AUTHORIZED",now,"Authority has standing at the boundary")}
+  else{setState($("payB"),"st-valid","NOT RELEASED");log("B","COMMIT_REFUSED",now,"Authority lacked standing at the boundary. Funds reservation released.")}
+  if(S.payA)log("A","PAYMENT_RELEASED",S.seenA,"Consequence formed: €48,500 left the account");
+  if(S.payB)log("B","PAYMENT_RELEASED",S.seenB,"Consequence formed: €48,500 left the account");else log("B","PAYMENT_NOT_RELEASED",S.seenB,"No consequence formed");
+  finish(revoke)});
+ return p}
+
+function finish(revoked){
+ var oa=$("outA"),ob=$("outB"),d=$("dist");
+ if(revoked){
+  stepMark("A","commit","bad","Committed using authority checked at initiation");
+  stepMark("B","commit","good","Refused: authority REVOKED at the boundary");
+  oa.className="outcome bad show";oa.innerHTML="<b>Run A preserved execution after authority ended.</b>The payment was released although the mandate had been revoked before commit.";
+  ob.className="outcome good show";ob.innerHTML="<b>Run B preserved authority over the consequence.</b>The revocation reached the boundary in time, so the payment was not released.";
+  d.innerHTML="<h2>Governance outcome</h2><p><b>Run A</b> preserved execution after authority ended.</p><p><b>Run B</b> preserved authority over the consequence.</p><p style='color:var(--mut);font-size:14px;margin-top:8px'>Same mandate, same request, same revocation event. Both runs passed the same check at initiation; only Run B asked again at the moment the consequence formed.</p>";
+ }else{
+  stepMark("A","commit","good","Committed; authority happened to still be valid, but was not re-checked");
+  stepMark("B","commit","good","Committed: authority VALID at the boundary");
+  oa.className="outcome neutral show";oa.innerHTML="<b>Control run: the payment was released.</b>Correct here only because authority happened to remain valid. Run A never confirmed it at the boundary.";
+  ob.className="outcome good show";ob.innerHTML="<b>Control run: the payment was released.</b>Run B confirmed authority still had standing when the consequence formed.";
+  d.innerHTML="<h2>Control run (no revocation)</h2><p>Both runs release the payment. This shows Run B does not simply block payments: it allows the consequence when authority has standing at the boundary.</p>";
+ }
+ d.className="card distinction show";
+ $("btnRun").disabled=true;$("btnStep").disabled=true;$("revoke").disabled=false;timer=null;
+}
+
+function next(){if(qi<queue.length){if(qi===0){$("revoke").disabled=true;queue=plan()}queue[qi++]();return true}return false}
+$("btnRun").addEventListener("click",function(){if(timer)return;$("btnRun").disabled=true;$("btnStep").disabled=true;
+ (function loop(){if(next()){timer=setTimeout(loop,700)}else{timer=null}})()});
+$("btnStep").addEventListener("click",function(){next()});
+$("btnReset").addEventListener("click",reset);
+$("revoke").addEventListener("change",reset);
+function json(){return JSON.stringify({test:"Governance Physics Test 1: authority must survive the path to consequence",scenario:{mandate_by:"Dana Reyes, Financial Controller",holder:"Payments Agent",payment:"PMT-0042 EUR 48,500 to Northwind Supplies BV",revocation_before_commit:$("revoke").checked},events:S.log},null,2)}
+$("btnCopy").addEventListener("click",function(){var b=this;try{navigator.clipboard.writeText(json()).then(function(){b.textContent="Copied";setTimeout(function(){b.textContent="Copy log"},1500)})}catch(e){}});
+$("btnDl").addEventListener("click",function(){var a=document.createElement("a");a.href=URL.createObjectURL(new Blob([json()],{type:"application/json"}));a.download="authority-test-1-log.json";a.click()});
+reset();
+})();
+</script>
+</body></html>

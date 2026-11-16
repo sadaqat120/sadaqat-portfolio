@@ -548,13 +548,6 @@ export const experience = [
     where: "Lahore, on-site",
     points: ["Requirements and workflow analysis for internal office software, working with the development team."],
   },
-  {
-    title: "Software development intern",
-    org: "XeuroTech",
-    when: "Aug 2025",
-    where: "Multan, on-site",
-    points: ["React, Node.js, Express and MongoDB features and debugging on client projects."],
-  },
 ];
 
 export const skills = [

@@ -27,7 +27,10 @@ const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   async headers() {
-    return [{ source: "/:path*", headers: security }];
+    return [
+      { source: "/:path*", headers: security },
+      { source: "/gig/:file*", headers: [{ key: "Access-Control-Allow-Origin", value: "*" }] },
+    ];
   },
 };
 

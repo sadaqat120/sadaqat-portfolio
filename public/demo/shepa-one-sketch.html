@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Shepa One · First-minute flow sketch</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<style>
+:root{--bg:#f6f7fb;--card:#fff;--ink:#141a2b;--mute:#5d6680;--line:#e3e6ef;--acc:#4f46e5;--acc2:#7c3aed;--ok:#16a34a;--warn:#d97706;--bad:#dc2626;--font:Inter,system-ui,-apple-system,"Segoe UI",sans-serif}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1020;--card:#151a2e;--ink:#eef0f8;--mute:#9aa3bd;--line:#262c45}}
+:root[data-theme="dark"]{--bg:#0d1020;--card:#151a2e;--ink:#eef0f8;--mute:#9aa3bd;--line:#262c45}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 var(--font);-webkit-font-smoothing:antialiased}
+.wrap{max-width:1100px;margin:0 auto;padding:0 18px}
+header{padding:40px 0 10px}
+.eyebrow{font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--acc);margin:0 0 8px}
+h1{font-size:clamp(1.8rem,4vw,2.7rem);line-height:1.1;margin:0 0 10px;letter-spacing:-.02em}
+h2{font-size:1.25rem;margin:0 0 10px}
+h3{font-size:1rem;margin:0 0 6px}
+.lede{color:var(--mute);max-width:44em;margin:0}
+section{padding:22px 0}
+.grid{display:grid;gap:16px}
+@media(min-width:900px){.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}.proto{grid-template-columns:360px 1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px}
+.card p{margin:0 0 8px}
+.mute{color:var(--mute)}
+.small{font-size:.88rem}
+.pill{display:inline-block;font-size:.75rem;font-weight:700;border-radius:999px;padding:3px 10px;background:rgba(79,70,229,.12);color:var(--acc)}
+ul.clean{margin:6px 0 0;padding-left:18px}
+ul.clean li{margin:4px 0}
+/* phone */
+.phone{width:320px;height:640px;border-radius:44px;background:#0b0d17;padding:12px;box-shadow:0 30px 60px -30px rgba(0,0,0,.6);margin:0 auto;position:relative}
+.screen{width:100%;height:100%;border-radius:34px;overflow:hidden;background:linear-gradient(180deg,#1b1f3b,#2a1f55);color:#fff;position:relative;display:flex;flex-direction:column}
+.notch{position:absolute;top:8px;left:50%;transform:translateX(-50%);width:110px;height:26px;background:#0b0d17;border-radius:20px;z-index:3}
+.scr{position:absolute;inset:0;padding:54px 20px 22px;display:flex;flex-direction:column;gap:12px;animation:in .35s ease both}
+.scr[hidden]{display:none}
+@keyframes in{from{opacity:0;transform:translateY(10px)}}
+.scr h3{font-size:1.25rem;margin:4px 0 0}
+.scr p{margin:0;color:#c9cdf0;font-size:.9rem}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1px solid rgba(255,255,255,.25);background:transparent;color:#fff;border-radius:999px;padding:6px 12px;font:inherit;font-size:.85rem;cursor:pointer}
+.chip[aria-pressed="true"]{background:#fff;color:#2a1f55;border-color:#fff;font-weight:700}
+.pbtn{margin-top:auto;border:0;border-radius:14px;padding:14px;font:inherit;font-weight:700;background:linear-gradient(90deg,var(--acc),var(--acc2));color:#fff;cursor:pointer}
+.pbtn.alt{background:rgba(255,255,255,.12);margin-top:0}
+.lbl{font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;color:#a9aee0;font-weight:700}
+.globe{width:170px;height:170px;border-radius:50%;margin:10px auto;background:radial-gradient(circle at 35% 30%,#6d6af7,#2b2a7a 60%,#151545);position:relative;box-shadow:0 0 60px rgba(109,106,247,.5)}
+.globe i{position:absolute;width:10px;height:10px;border-radius:50%;background:#7CFFB2;box-shadow:0 0 0 0 rgba(124,255,178,.7);animation:ping 1.6s infinite}
+@keyframes ping{70%{box-shadow:0 0 0 12px rgba(124,255,178,0)}100%{box-shadow:0 0 0 0 rgba(124,255,178,0)}}
+.timer{text-align:center;font-variant-numeric:tabular-nums;font-weight:700;font-size:1.4rem}
+.video{flex:1;border-radius:20px;background:linear-gradient(160deg,#3a3f78,#1c1f45);position:relative;display:grid;place-items:center;font-size:3.4rem}
+.video .me{position:absolute;right:10px;bottom:10px;width:70px;height:96px;border-radius:12px;background:#5b5fb0;display:grid;place-items:center;font-size:1.6rem}
+.topic{background:rgba(255,255,255,.1);border-radius:14px;padding:10px 12px;font-size:.88rem}
+.faces{display:flex;justify-content:space-between;gap:8px}
+.face{flex:1;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.06);border-radius:16px;padding:14px 0;font-size:1.8rem;cursor:pointer;color:#fff}
+.face span{display:block;font-size:.75rem;margin-top:4px;color:#c9cdf0}
+.sys{position:absolute;inset:0;background:rgba(0,0,0,.45);display:grid;place-items:center;z-index:4;animation:in .25s both}
+.sys[hidden]{display:none}
+.alert{width:250px;background:rgba(242,242,247,.97);color:#000;border-radius:14px;text-align:center;overflow:hidden}
+.alert b{display:block;padding:16px 14px 2px;font-size:.95rem}
+.alert p{color:#333;font-size:.78rem;padding:0 14px 8px;margin:0}
+.stars{font-size:1.5rem;color:#0a84ff;letter-spacing:4px;padding-bottom:10px}
+.alert button{display:block;width:100%;border:0;border-top:1px solid #c6c6c8;background:transparent;padding:11px;font:inherit;font-size:.95rem;color:#0a84ff;cursor:pointer}
+.tag{font-size:.72rem;color:#7CFFB2;font-weight:700}
+/* rules */
+.rule{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--line)}
+.rule:last-child{border:0}
+.rule>b{flex:none;width:26px;height:26px;border-radius:8px;background:var(--acc);color:#fff;display:grid;place-items:center;font-size:.8rem}
+pre{background:#0f1226;color:#d7dbff;border-radius:14px;padding:14px;overflow:auto;font-size:.82rem;line-height:1.5;margin:10px 0 0}
+.controls{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;justify-content:center}
+.controls button{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;padding:7px 11px;font:inherit;font-size:.85rem;cursor:pointer}
+.steps{display:flex;gap:6px;justify-content:center;margin-top:10px}
+.steps i{width:8px;height:8px;border-radius:50%;background:var(--line)}
+.steps i.on{background:var(--acc)}
+table{width:100%;border-collapse:collapse;font-size:.92rem}
+td,th{text-align:left;padding:9px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--mute);font-weight:600;font-size:.8rem;text-transform:uppercase;letter-spacing:.06em}
+footer{padding:30px 0 50px;color:var(--mute);font-size:.88rem}
+a{color:var(--acc)}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+</head>
+<body>
+<header class="wrap">
+  <p class="eyebrow">Sketch for Gavin Xing · Shepa One</p>
+  <h1>Talking within 60 seconds, and a rating ask only after a good conversation</h1>
+  <p class="lede">A clickable sketch of two changes: the first minute for a new user, and when to ask for an App Store rating. Made by Sadaqat Rasool for our call. No code from your app was used; the screens are mock-ups.</p>
+</header>
+
+<section class="wrap">
+  <div class="grid g3">
+    <div class="card"><span class="pill">What I saw</span><h3 style="margin-top:8px">No rating score yet</h3><p class="mute small">The App Store page (US and MX) says the app "hasn't received enough ratings or reviews to display an overview". For a social app, that's often where people decide not to install.</p></div>
+    <div class="card"><span class="pill">Why it matters</span><h3 style="margin-top:8px">Empty rooms lose users</h3><p class="mute small">In a language-exchange app, a new user who waits and sees nobody usually leaves. Your AI Talk (added in 1.2.28) can fill that gap so nobody waits.</p></div>
+    <div class="card"><span class="pill">The idea</span><h3 style="margin-top:8px">Ask happy users only</h3><p class="mute small">Ask for a rating right after a conversation the user says was good. Unhappy users get a private feedback form instead. That way the ratings that come in reflect your best moments.</p></div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="grid proto">
+    <div>
+      <div class="phone"><div class="screen"><div class="notch"></div>
+        <!-- 1 -->
+        <div class="scr" data-s="1">
+          <span class="lbl">Step 1 · 10 seconds</span>
+          <h3>Hi! Let's get you talking.</h3>
+          <p>I speak</p>
+          <div class="chips" data-g="speak"><button class="chip" aria-pressed="true">English</button><button class="chip">中文</button><button class="chip">Español</button></div>
+          <p>I want to practise</p>
+          <div class="chips" data-g="learn"><button class="chip">English</button><button class="chip" aria-pressed="true">Español</button><button class="chip">中文</button><button class="chip">日本語</button></div>
+          <p class="small">No profile, photo or bio needed yet. That can come after the first chat.</p>
+          <button class="pbtn" data-go="2">Find me a partner</button>
+        </div>
+        <!-- 2 -->
+        <div class="scr" data-s="2" hidden>
+          <span class="lbl">Step 2 · up to 20 seconds</span>
+          <h3>Finding a native <span data-lang>Spanish</span> speaker…</h3>
+          <div class="globe"><i style="left:40px;top:50px"></i><i style="left:110px;top:70px;animation-delay:.4s"></i><i style="left:70px;top:120px;animation-delay:.8s"></i></div>
+          <div class="timer" id="tm">0:00</div>
+          <p class="small" style="text-align:center">3 people online now</p>
+          <button class="pbtn" data-go="3" data-who="person">✓ Partner found (demo)</button>
+          <button class="pbtn alt" data-go="3" data-who="ai">Nobody free → talk to AI now</button>
+        </div>
+        <!-- 3 -->
+        <div class="scr" data-s="3" hidden>
+          <span class="lbl">Step 3 · the conversation</span>
+          <div class="video" id="vid">🙂<div class="me">🧑</div></div>
+          <div class="topic"><b>Starter topic:</b> "What did you eat today?" · <span class="tag">tap for another</span></div>
+          <p class="small" id="aiNote" hidden>AI Talk now. We'll notify you the moment a real speaker is free.</p>
+          <button class="pbtn" data-go="4">End call (after 4 min)</button>
+        </div>
+        <!-- 4 -->
+        <div class="scr" data-s="4" hidden>
+          <span class="lbl">Step 4 · one tap</span>
+          <h3>How was your conversation?</h3>
+          <div class="faces">
+            <button class="face" data-mood="good">😀<span>Great</span></button>
+            <button class="face" data-mood="ok">🙂<span>Okay</span></button>
+            <button class="face" data-mood="bad">😕<span>Not good</span></button>
+          </div>
+          <p class="small">This private answer decides what happens next. It is never sent to the App Store.</p>
+        </div>
+        <!-- 5 bad -->
+        <div class="scr" data-s="5" hidden>
+          <span class="lbl">Unhappy path · private</span>
+          <h3>Sorry about that. What went wrong?</h3>
+          <div class="chips"><button class="chip">Partner didn't show</button><button class="chip">Bad connection</button><button class="chip">Rude partner (report)</button><button class="chip">Hard to find someone</button></div>
+          <p class="small">This goes to you as the founder, with the session details. No store rating is asked for.</p>
+          <button class="pbtn" data-go="1">Send feedback</button>
+        </div>
+        <!-- 6 ok -->
+        <div class="scr" data-s="6" hidden>
+          <span class="lbl">Neutral path</span>
+          <h3>Nice! Same time tomorrow?</h3>
+          <p>Turn on a daily reminder so you don't lose your streak.</p>
+          <button class="pbtn" data-go="1">Remind me at 8 PM</button>
+        </div>
+        <div class="sys" id="sys" hidden><div class="alert"><b>Enjoying Shepa One?</b><p>Tap a star to rate it on the App Store.</p><div class="stars">★★★★★</div><button data-close>Not Now</button></div></div>
+      </div></div>
+      <div class="steps" id="dots"><i class="on"></i><i></i><i></i><i></i></div>
+      <div class="controls"><button data-go="1">↺ Restart</button><button id="toggleRules">Show the rule check</button></div>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h2>When the rating prompt is allowed to show</h2>
+        <div class="rule"><b>1</b><div>The user tapped <b>Great</b> after the conversation.</div></div>
+        <div class="rule"><b>2</b><div>The conversation lasted <b>3 minutes or more</b> (both sides stayed).</div></div>
+        <div class="rule"><b>3</b><div>It is <b>not the very first session</b> (they have come back at least once).</div></div>
+        <div class="rule"><b>4</b><div>We haven't asked in the <b>last 120 days</b>. Apple shows the system prompt at most 3 times a year anyway, so each ask has to count.</div></div>
+        <div class="rule"><b>5</b><div><b>Never</b> after a bad call, a report or a connection problem.</div></div>
+        <pre id="code" hidden>// iOS (Swift): after the "How was it?" answer
+func afterSession(_ s: Session, mood: Mood) {
+  guard mood == .great,
+        s.duration >= 180,
+        user.sessionCount >= 2,
+        daysSince(user.lastRatingAsk) >= 120,
+        !s.hadReport, !s.hadConnectionIssue else {
+    if mood == .notGood { showPrivateFeedback(s) }
+    return
+  }
+  user.lastRatingAsk = .now
+  if let scene = activeWindowScene {
+    SKStoreReviewController.requestReview(in: scene) // or AppStore.requestReview
+  }
+}
+// Android: the same rule, then the Play In-App Review API.</pre>
+      </div>
+      <div class="card">
+        <h2>The first minute</h2>
+        <ul class="clean">
+          <li>Only 2 questions before the first call: what you speak, and what you want to practise.</li>
+          <li>Match for up to 20 seconds. If nobody fits, offer AI Talk immediately, and notify them when a person comes online.</li>
+          <li>A starter topic on screen, so nobody freezes.</li>
+          <li>Profile, photo and follows come after the first good conversation, not before.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h2>What we'd measure</h2>
+        <table>
+          <tr><th>Metric</th><th>Why</th></tr>
+          <tr><td>Time to first conversation</td><td>Target: under 60 seconds for a new user</td></tr>
+          <tr><td>% of new users who talk in session 1</td><td>The best early sign of retention</td></tr>
+          <tr><td>"Great" / "Okay" / "Not good" split</td><td>A quality signal per language pair</td></tr>
+          <tr><td>Ratings per week</td><td>Enough to show a score on the store</td></tr>
+          <tr><td>Day-1 and day-7 return</td><td>Whether the changes keep people</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="card">
+    <h2>Three small things I noticed on the App Store page</h2>
+    <ul class="clean">
+      <li>The description has a Chinese full-width comma ("，") and reads like a translation. One clean paragraph with the 3 main features would convert better.</li>
+      <li>The in-app purchase list shows "vip_month $4.99" but also "month $299.00" and "vip_month $299.00". If $299 isn't meant to be monthly, it's worth checking in App Store Connect.</li>
+      <li>The age rating is 4+ while the app has video calls and chat with strangers. It's worth checking this against Apple's rules for user-generated content (report and block in the call screen).</li>
+    </ul>
+  </div>
+</section>
+
+<footer class="wrap">Sketch by Sadaqat Rasool · full-stack and AI developer · <a href="https://sadaqatrasool.vercel.app">sadaqatrasool.vercel.app</a></footer>
+
+<script>
+(function(){
+  var cur=1, timer=null, who="person";
+  var scr=document.querySelectorAll(".scr"), dots=document.querySelectorAll("#dots i");
+  function show(n){
+    cur=n; scr.forEach(function(s){s.hidden=s.getAttribute("data-s")!==String(n)});
+    var d=n>4?4:n; dots.forEach(function(x,i){x.classList.toggle("on",i<d)});
+    clearInterval(timer);
+    if(n===2){var t=0;var el=document.getElementById("tm");el.textContent="0:00";timer=setInterval(function(){t++;el.textContent="0:"+(t<10?"0":"")+t;if(t>=20)clearInterval(timer)},1000)}
+    if(n===3){document.getElementById("aiNote").hidden=who!=="ai";document.getElementById("vid").firstChild.textContent=who==="ai"?"🤖":"🙂"}
+  }
+  document.addEventListener("click",function(e){
+    var c=e.target.closest(".chip");
+    if(c){var g=c.parentNode;if(g.getAttribute("data-g")){g.querySelectorAll(".chip").forEach(function(x){x.setAttribute("aria-pressed",String(x===c))});if(g.getAttribute("data-g")==="learn"){var m={"English":"English","Español":"Spanish","中文":"Chinese","日本語":"Japanese"};document.querySelector("[data-lang]").textContent=m[c.textContent]||c.textContent}}else{c.setAttribute("aria-pressed",String(c.getAttribute("aria-pressed")!=="true"))}return}
+    var g=e.target.closest("[data-go]");
+    if(g){if(g.getAttribute("data-who"))who=g.getAttribute("data-who");show(Number(g.getAttribute("data-go")));return}
+    var f=e.target.closest(".face");
+    if(f){var m=f.getAttribute("data-mood");if(m==="good"){document.getElementById("sys").hidden=false}else if(m==="bad"){show(5)}else{show(6)}return}
+    if(e.target.closest("[data-close]")){document.getElementById("sys").hidden=true;show(6);return}
+    if(e.target.id==="toggleRules"){var p=document.getElementById("code");p.hidden=!p.hidden;e.target.textContent=p.hidden?"Show the rule check":"Hide the rule check"}
+  });
+})();
+</script>
+</body>
+</html>

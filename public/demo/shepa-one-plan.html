@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Shepa One · Plan and questions</title>
+<meta name="robots" content="noindex,nofollow">
+<style>
+:root{--bg:#f6f7fb;--card:#fff;--ink:#141a2b;--mute:#5d6680;--line:#e3e6ef;--acc:#4f46e5;--font:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1020;--card:#151a2e;--ink:#eef0f8;--mute:#9aa3bd;--line:#262c45;--acc:#8b85ff}}
+:root[data-theme="dark"]{--bg:#0d1020;--card:#151a2e;--ink:#eef0f8;--mute:#9aa3bd;--line:#262c45;--acc:#8b85ff}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 var(--font)}
+.wrap{max-width:820px;margin:0 auto;padding:28px 16px 40px}
+.eyebrow{font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--acc);margin:0 0 6px}
+h1{font-size:clamp(1.6rem,4vw,2.2rem);line-height:1.15;margin:0 0 8px}
+h2{font-size:1.2rem;margin:0 0 10px}
+.lede,.mute{color:var(--mute)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;margin:16px 0;break-inside:avoid}
+ul,ol{margin:6px 0 0;padding-left:1.3em}li{margin:4px 0}
+.price{font-weight:800;color:var(--acc)}
+table{width:100%;border-collapse:collapse;font-size:.95rem}
+td,th{text-align:left;padding:7px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+a{color:var(--acc)}
+@media print{body{background:#fff}.card{border-color:#ddd}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<p class="eyebrow">For Gavin Xing · Shepa One</p>
+<h1>Plan and questions</h1>
+<p class="lede">Our call on 16 November kept breaking up, so here is everything in writing. The clickable sketch is here: <a href="https://sadaqatrasool.vercel.app/demo/shepa-one-sketch.html">sadaqatrasool.vercel.app/demo/shepa-one-sketch.html</a></p>
+
+<div class="card">
+<h2>1. What I saw</h2>
+<ul>
+<li>The App Store page doesn't show a rating score yet ("not enough ratings or reviews"). For a social app, that is often where people decide not to install.</li>
+<li>In a language-exchange app, a new user who waits and sees nobody usually leaves. Your AI Talk can fill that gap.</li>
+<li>Three small store details worth checking: a "month $299.00" in-app purchase next to "vip_month $4.99"; a 4+ age rating for an app with video calls with strangers; and a Chinese full-width comma in the description.</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>2. Step 1: ratings from happy users <span class="price">· $149 fixed</span></h2>
+<p>The App Store rating prompt shows only when all of these are true:</p>
+<ol>
+<li>The conversation lasted 3 minutes or more.</li>
+<li>It is not the user's first session.</li>
+<li>We haven't asked in the last 120 days.</li>
+<li>No report and no connection problem in that call.</li>
+</ol>
+<p>After a call, the user answers "How was your conversation?" privately. "Not good" opens a private feedback form that goes to you, with the session details. On iOS this uses Apple's own review prompt.</p>
+<p class="mute">Android: Google's guidelines say no questions may be asked before or while showing the in-app review card. So on Android the review card is triggered by the objective rules above only, and the "How was it?" question stays separate.</p>
+<p>Delivery: 2 to 3 working days after I get access. You pay when it works in your TestFlight build.</p>
+</div>
+
+<div class="card">
+<h2>3. Step 2: talking within 60 seconds <span class="price">· $395 fixed</span></h2>
+<ul>
+<li>Only 2 questions before the first call: what you speak, and what you want to practise.</li>
+<li>Match for up to 20 seconds. If nobody fits, offer AI Talk straight away and notify the user when a person comes online.</li>
+<li>A starter topic on screen, so nobody freezes.</li>
+<li>Profile, photo and follows come after the first good conversation, not before.</li>
+</ul>
+<p>Delivery: about one week. Same terms. Or hourly, if you prefer: <span class="price">$15 an hour</span>.</p>
+</div>
+
+<div class="card">
+<h2>4. What we'd measure</h2>
+<table>
+<tr><th>Metric</th><th>Why</th></tr>
+<tr><td>Time to first conversation</td><td>Target: under 60 seconds for a new user</td></tr>
+<tr><td>% of new users who talk in session 1</td><td>The best early sign of retention</td></tr>
+<tr><td>"Great / Okay / Not good" split</td><td>Quality per language pair</td></tr>
+<tr><td>Ratings per week</td><td>Enough to show a score on the store</td></tr>
+<tr><td>Day-1 and day-7 return</td><td>Whether the changes keep people</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h2>5. Questions for you</h2>
+<p class="mute">Short answers in chat are fine.</p>
+<ol>
+<li>How many people sign up per week, and how many have a real conversation on day one?</li>
+<li>When a new user opens the app and nobody is online in their language, what happens today?</li>
+<li>What is the app built with: Swift, Flutter or React Native? Is the code in-house?</li>
+<li>Is there an Android version, or is it iOS-first?</li>
+<li>Is the "month $299.00" in-app purchase intended?</li>
+<li>Do calls already have report and block buttons? (This matters for the 4+ age rating.)</li>
+<li>If you had an extra pair of hands, what is the one thing you would fix first?</li>
+<li>Which step would you like to start with, and can you give TestFlight or repo access?</li>
+</ol>
+</div>
+
+<div class="card">
+<h2>6. About me and timing</h2>
+<p>My main stack is React, Next.js, Node and AI integrations. For React Native I work in your code directly; the rating logic in native Swift is small, and for bigger native work I'd tell you upfront.</p>
+<p>I'm available until Wednesday 18 November. From Thursday I travel for about two weeks; during that time we can work by message, with calls again from 28 November.</p>
+<p class="mute">Sadaqat Rasool · full-stack and AI developer · <a href="https://sadaqatrasool.vercel.app">sadaqatrasool.vercel.app</a></p>
+</div>
+</div>
+</body>
+</html>

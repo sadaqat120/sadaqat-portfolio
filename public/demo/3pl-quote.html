@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>3PL Quote Tool · Test version</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="Test version of an instant fulfilment quote tool: a seller enters volumes and sees a ballpark monthly cost.">
+<style>
+:root{--bg:#f4f6fa;--card:#fff;--ink:#14213d;--mute:#5b6478;--line:#e1e5ee;--acc:#1d4ed8;--acc2:#f59e0b;--ok:#15803d;--font:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1424;--card:#161e33;--ink:#eef1f8;--mute:#9aa4bd;--line:#27304a;--acc:#60a5fa}}
+:root[data-theme="dark"]{--bg:#0e1424;--card:#161e33;--ink:#eef1f8;--mute:#9aa4bd;--line:#27304a;--acc:#60a5fa}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 var(--font)}
+.wrap{max-width:1000px;margin:0 auto;padding:0 16px}
+.note{background:#fff7e0;color:#6b4a00;border-bottom:1px solid #f1d27a;font-size:.88rem;padding:8px 0;text-align:center}
+header{padding:28px 0 8px}
+h1{font-size:clamp(1.6rem,4vw,2.3rem);line-height:1.15;margin:0 0 6px}
+.lede{color:var(--mute);margin:0}
+.grid{display:grid;gap:16px;padding:18px 0 40px}
+@media(min-width:860px){.grid{grid-template-columns:1.1fr .9fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px}
+label{display:block;font-weight:600;font-size:.92rem;margin:14px 0 6px}
+label:first-child{margin-top:0}
+input[type=number],input[type=text],input[type=email]{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:10px;font:inherit;background:var(--bg);color:var(--ink)}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+.chip{border:1px solid var(--line);border-radius:999px;padding:7px 12px;font-size:.9rem;cursor:pointer;background:var(--bg);color:var(--ink)}
+.chip[aria-pressed=true]{background:var(--acc);border-color:var(--acc);color:#fff}
+.total{font-size:2.3rem;font-weight:800;margin:4px 0;color:var(--acc)}
+.mute{color:var(--mute)}.small{font-size:.85rem}
+table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.92rem}
+td{padding:7px 0;border-bottom:1px solid var(--line)}td:last-child{text-align:right;font-variant-numeric:tabular-nums}
+button.go{width:100%;margin-top:14px;padding:12px;border:0;border-radius:10px;background:var(--acc2);color:#1b1300;font:inherit;font-weight:700;cursor:pointer}
+.ok{display:none;margin-top:12px;color:var(--ok);font-weight:600}
+.sticky{position:sticky;top:12px}
+footer{padding:0 0 30px;font-size:.82rem;color:var(--mute)}
+</style>
+</head>
+<body>
+<div class="note">Test version for Discount Warehouse. All rates below are <b>example rates</b>, not real prices.</div>
+<div class="wrap">
+<header>
+<h1>Get your fulfilment quote in 60 seconds</h1>
+<p class="lede">Tell us your volumes. You see a ballpark monthly cost right away, then book a visit to the facility.</p>
+</header>
+<div class="grid">
+<div class="card">
+<label for="orders">Orders per month</label>
+<input id="orders" type="number" min="0" value="1500">
+<label for="items">Average items per order</label>
+<input id="items" type="number" min="1" step="0.1" value="1.5">
+<label for="skus">Number of SKUs</label>
+<input id="skus" type="number" min="0" value="120">
+<label for="pallets">Pallets in storage</label>
+<input id="pallets" type="number" min="0" value="20">
+<label for="inbound">Inbound pallets per month</label>
+<input id="inbound" type="number" min="0" value="10">
+<label>Where do you sell?</label>
+<div class="row" id="channels">
+<button class="chip" aria-pressed="true" data-v="Amazon">Amazon</button>
+<button class="chip" aria-pressed="false" data-v="Walmart">Walmart</button>
+<button class="chip" aria-pressed="true" data-v="Shopify">Shopify</button>
+<button class="chip" aria-pressed="false" data-v="Other">Other</button>
+</div>
+<label>Extra services</label>
+<div class="row" id="extras">
+<button class="chip" aria-pressed="false" data-v="prep">FBA prep &amp; labelling</button>
+<button class="chip" aria-pressed="false" data-v="kit">Kitting / bundles</button>
+</div>
+</div>
+<div class="card sticky">
+<div class="mute small">Estimated monthly cost</div>
+<div class="total" id="total">$0</div>
+<div class="mute small" id="range"></div>
+<table id="breakdown"></table>
+<div class="mute small">Ballpark only. Your final quote follows a short call or facility visit.</div>
+<form id="lead">
+<label for="name">Your name</label>
+<input id="name" type="text" required>
+<label for="email">Email</label>
+<input id="email" type="email" required>
+<button class="go" type="submit">Book a facility visit</button>
+<div class="ok" id="ok">Thanks. In the live version the sales team gets this request with your volumes attached.</div>
+</form>
+</div>
+</div>
+<footer>Test page built by Sadaqat Rasool. Example rates: receiving $35/pallet, storage $25/pallet/month, pick &amp; pack $3.00/order + $0.75 per extra item, packaging $0.60/order, FBA prep $0.50/unit, kitting $1.00/order.</footer>
+</div>
+<script>
+var R={receive:35,store:25,pick:3,extra:.75,pack:.6,prep:.5,kit:1};
+function n(id){var v=parseFloat(document.getElementById(id).value);return isNaN(v)||v<0?0:v}
+function money(x){return '$'+Math.round(x).toLocaleString('en-US')}
+function on(group,v){var b=document.querySelector('#'+group+' [data-v="'+v+'"]');return b&&b.getAttribute('aria-pressed')==='true'}
+function calc(){
+var o=n('orders'),it=Math.max(1,n('items')),p=n('pallets'),inb=n('inbound');
+var lines=[['Receiving ('+inb+' pallets)',inb*R.receive],['Storage ('+p+' pallets)',p*R.store],['Pick & pack ('+o.toLocaleString('en-US')+' orders)',o*R.pick+o*(it-1)*R.extra],['Packaging',o*R.pack]];
+if(on('extras','prep'))lines.push(['FBA prep & labelling',o*it*R.prep]);
+if(on('extras','kit'))lines.push(['Kitting / bundles',o*R.kit]);
+var t=lines.reduce(function(s,l){return s+l[1]},0);
+document.getElementById('total').textContent=money(t);
+document.getElementById('range').textContent='Likely range '+money(t*.85)+' to '+money(t*1.15)+' per month';
+document.getElementById('breakdown').innerHTML=lines.map(function(l){return '<tr><td>'+l[0]+'</td><td>'+money(l[1])+'</td></tr>'}).join('');
+}
+document.querySelectorAll('input[type=number]').forEach(function(i){i.addEventListener('input',calc)});
+document.querySelectorAll('.chip').forEach(function(b){b.addEventListener('click',function(){b.setAttribute('aria-pressed',b.getAttribute('aria-pressed')==='true'?'false':'true');calc()})});
+document.getElementById('lead').addEventListener('submit',function(e){e.preventDefault();document.getElementById('ok').style.display='block'});
+calc();
+</script>
+</body>
+</html>

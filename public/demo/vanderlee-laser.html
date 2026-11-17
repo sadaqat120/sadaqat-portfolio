@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lasersnijden offerte · Testversie Van der Lee Staalbouw</title>
+<meta name="robots" content="noindex,nofollow">
+<style>
+:root{--bg:#f3f5f8;--card:#fff;--ink:#141c2b;--mute:#5a6475;--line:#dfe4ec;--acc:#c2410c;--ok:#15803d;--font:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f141d;--card:#171e2b;--ink:#eef1f6;--mute:#9aa4b5;--line:#2a3343}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 var(--font)}
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
+.note{background:#fff7e0;color:#6b4a00;border-bottom:1px solid #f1d27a;font-size:.88rem;padding:8px 16px;text-align:center}
+header{padding:28px 0 6px}h1{font-size:clamp(1.55rem,4vw,2.25rem);line-height:1.15;margin:0 0 6px}
+.lede{color:var(--mute);margin:0;max-width:720px}
+.grid{display:grid;gap:16px;padding:18px 0 32px}@media(min-width:880px){.grid{grid-template-columns:1.15fr .85fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px}
+label{display:block;font-weight:600;font-size:.92rem;margin:14px 0 6px}
+input,select,textarea{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:10px;font:inherit;background:var(--bg);color:var(--ink)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.drop{border:2px dashed var(--line);border-radius:14px;padding:22px;text-align:center;cursor:pointer;background:var(--bg)}
+.drop.on{border-color:var(--acc)}.drop b{color:var(--acc)}
+.files{list-style:none;padding:0;margin:8px 0 0;font-size:.9rem}.files li{padding:4px 0;border-bottom:1px solid var(--line)}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+.chip{border:1px solid var(--line);border-radius:999px;padding:7px 12px;font-size:.9rem;cursor:pointer;background:var(--bg);color:var(--ink)}
+.chip[aria-pressed=true]{background:var(--acc);border-color:var(--acc);color:#fff}
+button.go{width:100%;margin-top:16px;padding:13px;border:0;border-radius:10px;background:var(--acc);color:#fff;font:inherit;font-weight:700;cursor:pointer}
+.mute{color:var(--mute)}.small{font-size:.86rem}
+.sticky{position:sticky;top:12px}
+pre{white-space:pre-wrap;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px;font-size:.85rem;margin:8px 0 0}
+.warn{color:#b45309;font-size:.86rem;min-height:1.2em}
+.ok{color:var(--ok);font-weight:700}
+ul.ben{padding-left:18px;margin:8px 0}ul.ben li{margin:4px 0}
+footer{padding:0 0 30px;font-size:.82rem;color:var(--mute)}
+</style>
+</head>
+<body>
+<div class="note">Testversie voor Van der Lee Staalbouw. Gemaakt als voorbeeld, nog niet gekoppeld aan jullie site.</div>
+<div class="wrap">
+<header><h1>Plaat lasersnijden: tekening uploaden, binnen 24 uur een prijs</h1><p class="lede">20kW Penta-laser, plaat tot 2500 × 6000 mm. Staal en rvs van 0,5 tot 70 mm, aluminium ook. Upload je DXF of STEP, kies materiaal en aantal, klaar.</p></header>
+<div class="grid">
+<form class="card" id="f" novalidate>
+<label>Tekening(en)</label>
+<div class="drop" id="drop" tabindex="0" role="button" aria-label="Tekening uploaden">Sleep je tekening hierheen of <b>kies een bestand</b><br><span class="small mute">DXF, DWG, STEP, PDF · meerdere bestanden mogelijk</span></div>
+<input type="file" id="file" multiple accept=".dxf,.dwg,.step,.stp,.pdf,.png,.jpg" hidden>
+<ul class="files" id="files"></ul>
+<label>Bewerking</label>
+<div class="row" id="ops"><button type="button" class="chip" aria-pressed="true">Lasersnijden</button><button type="button" class="chip" aria-pressed="false">Plasmasnijden</button><button type="button" class="chip" aria-pressed="false">Autogeen snijden</button><button type="button" class="chip" aria-pressed="false">Zetten / kanten</button><button type="button" class="chip" aria-pressed="false">Lassen / constructie</button></div>
+<div class="two">
+<div><label for="mat">Materiaal</label><select id="mat"><option>Staal</option><option>RVS</option><option>Aluminium</option></select></div>
+<div><label for="dik">Dikte (mm)</label><input id="dik" type="number" min="0.5" max="120" step="0.5" value="10"></div>
+</div>
+<div class="warn" id="dw"></div>
+<div class="two">
+<div><label for="qty">Aantal stuks</label><input id="qty" type="number" min="1" value="10"></div>
+<div><label for="when">Gewenste levering</label><select id="when"><option>Zo snel mogelijk</option><option>Binnen 2 weken</option><option>Binnen 4 weken</option><option>Geen haast</option></select></div>
+</div>
+<label for="note">Toelichting (optioneel)</label>
+<textarea id="note" rows="3" placeholder="Bijv. afwerking, toleranties, verzinken, ophalen of bezorgen"></textarea>
+<div class="two">
+<div><label for="nm">Naam en bedrijf</label><input id="nm" type="text" autocomplete="organization"></div>
+<div><label for="em">E-mail of telefoon</label><input id="em" type="text" autocomplete="email"></div>
+</div>
+<button class="go" type="submit">Vraag offerte aan</button>
+<p class="small mute">Je ontvangt een bevestiging per e-mail. Van der Lee Staalbouw stuurt binnen 24 uur een prijs.</p>
+</form>
+<div class="sticky">
+<div class="card">
+<h2 style="margin:0 0 6px;font-size:1.1rem">Wat Van der Lee Staalbouw binnenkrijgt</h2>
+<p class="small mute" style="margin:0">Elke aanvraag komt compleet binnen, met de tekening als bijlage. Geen heen-en-weer mailen meer om te vragen welk materiaal of hoeveel stuks.</p>
+<pre id="out">Vul het formulier in om het voorbeeld te zien.</pre>
+<p id="sent" class="ok" hidden>✓ Zo ziet de klant de bevestiging. (In deze testversie wordt niets verstuurd.)</p>
+</div>
+<div class="card" style="margin-top:16px">
+<h2 style="margin:0 0 6px;font-size:1.1rem">Waarom dit meer opdrachten oplevert</h2>
+<ul class="ben small"><li>Een inkoper die zoekt op ‘lasersnijden Brabant’ vindt de laser nu niet op de site. Met deze pagina wel.</li><li>De tekening zit er meteen bij, dus je kunt direct rekenen en nesten.</li><li>Aanvragen buiten kantooruren gaan niet verloren.</li><li>De belknop bovenaan belt na de fix ook echt +31 412 61 17 70.</li></ul>
+</div>
+</div>
+</div>
+<footer>Testversie gemaakt door Sadaqat Rasool voor Van der Lee Staalbouw. Komt op je eigen site in je eigen huisstijl, aanvragen gaan direct naar jullie e-mail.</footer>
+</div>
+<script>
+const $=s=>document.querySelector(s),files=[];
+const drop=$('#drop'),fi=$('#file');
+drop.onclick=()=>fi.click();drop.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();fi.click()}};
+['dragover','dragenter'].forEach(t=>drop.addEventListener(t,e=>{e.preventDefault();drop.classList.add('on')}));
+['dragleave','drop'].forEach(t=>drop.addEventListener(t,e=>{e.preventDefault();drop.classList.remove('on')}));
+drop.addEventListener('drop',e=>add(e.dataTransfer.files));fi.onchange=()=>add(fi.files);
+function add(l){for(const f of l)files.push(f);$('#files').innerHTML='';files.forEach(f=>{const li=document.createElement('li');li.textContent='📎 '+f.name+' · '+Math.max(1,Math.round(f.size/1024))+' KB';$('#files').appendChild(li)});draw()}
+document.querySelectorAll('.chip').forEach(c=>c.onclick=()=>{c.setAttribute('aria-pressed',c.getAttribute('aria-pressed')==='true'?'false':'true');draw()});
+const LIM={"Staal":70,"RVS":70,"Aluminium":70};
+function draw(){
+ const ops=[...document.querySelectorAll('.chip[aria-pressed=true]')].map(c=>c.textContent);
+ const m=$('#mat').value,d=+$('#dik').value,lim=LIM[m];
+ $('#dw').textContent=(lim&&d>lim)?'Let op: '+m+' tot '+lim+' mm op de laser. Dikker? Dan kijken we naar een andere bewerking.':'';
+ $('#out').textContent='Nieuwe offerteaanvraag\n────────────────\nVan: '+($('#nm').value||'…')+'\nContact: '+($('#em').value||'…')+'\nBewerking: '+(ops.join(', ')||'…')+'\nMateriaal: '+m+', '+d+' mm\nAantal: '+$('#qty').value+' stuks\nLevering: '+$('#when').value+'\nTekeningen: '+(files.map(f=>f.name).join(', ')||'geen')+'\nToelichting: '+($('#note').value||'-');
+}
+document.querySelectorAll('input,select,textarea').forEach(e=>e.addEventListener('input',draw));draw();
+$('#f').onsubmit=e=>{e.preventDefault();draw();$('#sent').hidden=false};
+</script>
+</body>
+</html>

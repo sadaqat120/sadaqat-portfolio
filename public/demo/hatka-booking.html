@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Бронирование · Тестовая версия для Хатка</title>
+<meta name="robots" content="noindex,nofollow">
+<style>
+:root{--bg:#f5f3ee;--card:#fff;--ink:#1d2219;--mute:#5f6657;--line:#e3dfd3;--acc:#2f6b3a;--busy:#d9d4c7;--sel:#2f6b3a;--font:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#12150f;--card:#1b2017;--ink:#eef0ea;--mute:#a3aa98;--line:#2e3528;--busy:#3a4134;--acc:#6fbf7d;--sel:#4d9a5a}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 var(--font)}
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
+.note{background:#fff7e0;color:#6b4a00;border-bottom:1px solid #f1d27a;font-size:.88rem;padding:8px 16px;text-align:center}
+header{padding:26px 0 6px}h1{font-size:clamp(1.5rem,4vw,2.2rem);line-height:1.15;margin:0 0 6px}.lede{color:var(--mute);margin:0}
+.lang{float:right;display:flex;gap:6px}.lang button{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:8px;padding:4px 9px;cursor:pointer}
+.lang button[aria-pressed=true]{background:var(--acc);color:#fff;border-color:var(--acc)}
+.grid{display:grid;gap:16px;padding:18px 0 30px}@media(min-width:900px){.grid{grid-template-columns:1.2fr .8fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px}
+.houses{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.house{border:2px solid var(--line);border-radius:12px;padding:12px;cursor:pointer;background:var(--bg);color:var(--ink);text-align:left;font:inherit}
+.house[aria-pressed=true]{border-color:var(--acc)}
+.cal-h{display:flex;justify-content:space-between;align-items:center;margin:14px 0 8px}
+.cal-h button{border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:8px;padding:4px 10px;cursor:pointer}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.cal .dn{font-size:.75rem;color:var(--mute);text-align:center}
+.d{aspect-ratio:1;border:0;border-radius:8px;background:var(--bg);color:var(--ink);font:inherit;cursor:pointer}
+.d:disabled{background:var(--busy);color:var(--mute);text-decoration:line-through;cursor:not-allowed}
+.d.in{background:color-mix(in srgb,var(--sel) 30%,transparent)}.d.end{background:var(--sel);color:#fff}
+label{display:block;font-weight:600;font-size:.9rem;margin:12px 0 5px}
+input,select{width:100%;padding:9px 11px;border:1px solid var(--line);border-radius:10px;font:inherit;background:var(--bg);color:var(--ink)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+table{width:100%;border-collapse:collapse;font-size:.93rem}td{padding:6px 0;border-bottom:1px solid var(--line)}td:last-child{text-align:right}
+.total{font-size:2rem;font-weight:800;color:var(--acc);margin:6px 0}
+.go{display:block;width:100%;margin-top:12px;padding:12px;border:0;border-radius:10px;background:var(--acc);color:#fff;font:inherit;font-weight:700;cursor:pointer;text-align:center;text-decoration:none}
+.chat{margin-top:16px}.msgs{max-height:230px;overflow:auto;display:flex;flex-direction:column;gap:6px;font-size:.92rem}
+.m{padding:8px 11px;border-radius:12px;max-width:90%}.m.u{align-self:flex-end;background:var(--acc);color:#fff}.m.b{background:var(--bg);border:1px solid var(--line)}
+.qs{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.qs button{border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:999px;padding:5px 10px;font-size:.85rem;cursor:pointer}
+.small{font-size:.85rem}.mute{color:var(--mute)}
+footer{padding:0 0 30px;font-size:.82rem;color:var(--mute)}
+</style>
+</head>
+<body>
+<div class="note" data-t="note">Тестовая версия для Хатка (hatka.by). Цены и занятые даты — примеры, вы задаёте свои.</div>
+<div class="wrap">
+<header>
+<div class="lang" role="group" aria-label="Язык"><button data-l="ru" aria-pressed="true">RU</button><button data-l="en" aria-pressed="false">EN</button></div>
+<h1 data-t="h1">Забронируйте усадьбу за 1 минуту</h1>
+<p class="lede" data-t="lede">75 км от Минска. Два дома по 5 спален. Выберите дом и даты — сразу видно, свободно ли и сколько стоит.</p>
+</header>
+<div class="grid">
+<div class="card">
+<div class="houses">
+<button class="house" data-h="0" aria-pressed="true"><b data-t="h0">Дом 1</b><br><span class="small mute" data-t="hs">5 спален · до 12 гостей</span></button>
+<button class="house" data-h="1" aria-pressed="false"><b data-t="h1n">Дом 2</b><br><span class="small mute" data-t="hs2">5 спален · до 12 гостей</span></button>
+</div>
+<div class="cal-h"><button id="prev" aria-label="Назад">‹</button><b id="mon"></b><button id="next" aria-label="Вперёд">›</button></div>
+<div class="cal" id="cal"></div>
+<p class="small mute" data-t="calnote">Серые даты уже заняты. Нажмите дату заезда, затем дату выезда.</p>
+<div class="two">
+<div><label for="g" data-t="guests">Гостей</label><input id="g" type="number" min="1" max="24" value="8"></div>
+<div><label for="ev" data-t="event">Повод</label><select id="ev"><option value="rest" data-t="o1">Отдых</option><option value="wed" data-t="o2">Свадьба</option><option value="corp" data-t="o3">Корпоратив</option></select></div>
+</div>
+<div class="two">
+<label><input type="checkbox" id="banya" style="width:auto"> <span data-t="banya">Баня</span></label>
+<label><input type="checkbox" id="trans" style="width:auto"> <span data-t="trans">Трансфер из Минска</span></label>
+</div>
+</div>
+<div>
+<div class="card">
+<table id="sum"></table>
+<div class="total" id="tot">—</div>
+<a class="go" id="tg" href="https://t.me/vhatka" target="_blank" rel="noopener" data-t="send">Отправить заявку в Telegram</a>
+<p class="small mute" data-t="after">Заявка приходит владельцу уже с датами, домом и ценой. Без переписки «а свободно ли на…».</p>
+</div>
+<div class="card chat">
+<b data-t="ask">Вопрос? Ответим сразу, даже ночью</b>
+<div class="msgs" id="msgs"></div>
+<div class="qs" id="qs"></div>
+</div>
+</div>
+</div>
+<footer data-t="foot">Тестовая версия от Sadaqat Rasool для Хатка. На вашем сайте: ваши настоящие цены, календарь занятости и ответы ассистента по вашим правилам на RU / EN / 中文.</footer>
+</div>
+<script>
+const T={ru:{},en:{note:"Test version for Hatka (hatka.by). Prices and booked dates are examples; you set your own.",h1:"Book the estate in 1 minute",lede:"75 km from Minsk. Two houses with 5 bedrooms each. Pick a house and dates and see right away if it is free and what it costs.",h0:"House 1",h1n:"House 2",hs:"5 bedrooms · up to 12 guests",hs2:"5 bedrooms · up to 12 guests",calnote:"Grey dates are already booked. Tap the check-in date, then the check-out date.",guests:"Guests",event:"Occasion",o1:"Holiday",o2:"Wedding",o3:"Corporate event",banya:"Banya",trans:"Transfer from Minsk",send:"Send request via Telegram",after:"The owner gets the request with dates, house and price already in it. No back-and-forth about availability.",ask:"A question? Answered right away, even at night",foot:"Test version by Sadaqat Rasool for Hatka. On your site: your real prices, availability calendar and assistant answers by your rules in RU / EN / 中文."}};
+document.querySelectorAll('[data-t]').forEach(e=>T.ru[e.dataset.t]=e.textContent);
+let L='ru';const P={night:[450,450],wd:300,ev:{rest:0,wed:900,corp:600},banya:120,trans:150,extra:25};
+const MON={ru:['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'],en:['January','February','March','April','May','June','July','August','September','October','November','December']};
+const DN={ru:['Пн','Вт','Ср','Чт','Пт','Сб','Вс'],en:['Mo','Tu','We','Th','Fr','Sa','Su']};
+const QA={ru:[['Сколько стоит?','Цена считается сразу слева: выберите дом и даты. Будни дешевле, чем выходные.'],['Есть ли баня?','Да, баню можно добавить к бронированию галочкой «Баня».'],['Как добраться?','75 км от Минска. Можно заказать трансфер из Минска прямо в форме.'],['Можно свадьбу?','Да, усадьба принимает свадьбы и корпоративы. Выберите повод — цена пересчитается.']],en:[['How much is it?','The price is calculated on the left as soon as you pick a house and dates. Weekdays are cheaper than weekends.'],['Is there a banya?','Yes, add the banya to your booking with the "Banya" checkbox.'],['How do I get there?','75 km from Minsk. You can order a transfer from Minsk right in the form.'],['Can we hold a wedding?','Yes, the estate hosts weddings and corporate events. Pick the occasion and the price updates.']]};
+let H=0,view=new Date(),a=null,b=null;view.setDate(1);
+const busy=[new Set(),new Set()];(()=>{const t=new Date();for(let i=0;i<90;i++){const d=new Date(t);d.setDate(t.getDate()+i);const k=d.toISOString().slice(0,10);if((i*7+3)%11<2)busy[0].add(k);if((i*5+1)%9<2)busy[1].add(k)}})();
+const $=s=>document.querySelector(s),key=d=>d.toISOString().slice(0,10);
+function cal(){const c=$('#cal');c.innerHTML='';DN[L].forEach(n=>{const s=document.createElement('div');s.className='dn';s.textContent=n;c.appendChild(s)});
+$('#mon').textContent=MON[L][view.getMonth()]+' '+view.getFullYear();
+const off=(view.getDay()+6)%7;for(let i=0;i<off;i++)c.appendChild(document.createElement('div'));
+const days=new Date(view.getFullYear(),view.getMonth()+1,0).getDate(),today=new Date();today.setHours(0,0,0,0);
+for(let i=1;i<=days;i++){const d=new Date(Date.UTC(view.getFullYear(),view.getMonth(),i)),k=key(d),btn=document.createElement('button');btn.className='d';btn.textContent=i;
+const local=new Date(view.getFullYear(),view.getMonth(),i);btn.disabled=local<today||busy[H].has(k);
+if(a&&k===a||b&&k===b)btn.classList.add('end');else if(a&&b&&k>a&&k<b)btn.classList.add('in');
+btn.onclick=()=>pick(k);c.appendChild(btn)}}
+function pick(k){if(!a||b){a=k;b=null}else if(k<=a){a=k}else{let d=new Date(a);while(key(d)<k){d.setUTCDate(d.getUTCDate()+1);if(busy[H].has(key(d))&&key(d)<k){a=k;b=null;cal();price();return}}b=k}cal();price()}
+function price(){const s=$('#sum');s.innerHTML='';if(!a||!b){$('#tot').textContent='—';return}
+let n=0,we=0;for(let d=new Date(a);key(d)<b;d.setUTCDate(d.getUTCDate()+1)){n++;const w=d.getUTCDay();if(w===5||w===6)we++}
+const g=+$('#g').value,base=we*P.night[H]+(n-we)*P.wd,ex=Math.max(0,g-10)*P.extra*n,ev=P.ev[$('#ev').value],bn=$('#banya').checked?P.banya*n:0,tr=$('#trans').checked?P.trans:0;
+const R=L==='ru'?[['Ночей',n],['Проживание',base+' BYN'],['Доп. гости',ex+' BYN'],['Мероприятие',ev+' BYN'],['Баня',bn+' BYN'],['Трансфер',tr+' BYN']]:[['Nights',n],['Stay',base+' BYN'],['Extra guests',ex+' BYN'],['Event',ev+' BYN'],['Banya',bn+' BYN'],['Transfer',tr+' BYN']];
+R.forEach(([x,y])=>{const tr=document.createElement('tr');tr.innerHTML='<td></td><td></td>';tr.children[0].textContent=x;tr.children[1].textContent=y;s.appendChild(tr)});
+$('#tot').textContent=(base+ex+ev+bn+tr)+' BYN'}
+function qa(){const m=$('#msgs'),q=$('#qs');m.innerHTML='';q.innerHTML='';add('b',L==='ru'?'Здравствуйте! Спросите про цены, баню, дорогу или мероприятия.':'Hello! Ask about prices, the banya, directions or events.');
+QA[L].forEach(([k,v])=>{const x=document.createElement('button');x.textContent=k;x.onclick=()=>{add('u',k);setTimeout(()=>add('b',v),350)};q.appendChild(x)})}
+function add(c,t){const d=document.createElement('div');d.className='m '+c;d.textContent=t;$('#msgs').appendChild(d);$('#msgs').scrollTop=1e9}
+document.querySelectorAll('.house').forEach(x=>x.onclick=()=>{H=+x.dataset.h;document.querySelectorAll('.house').forEach(y=>y.setAttribute('aria-pressed',y===x));a=b=null;cal();price()});
+$('#prev').onclick=()=>{view.setMonth(view.getMonth()-1);cal()};$('#next').onclick=()=>{view.setMonth(view.getMonth()+1);cal()};
+['g','ev','banya','trans'].forEach(i=>$('#'+i).addEventListener('input',price));
+document.querySelectorAll('.lang button').forEach(x=>x.onclick=()=>{L=x.dataset.l;document.documentElement.lang=L;document.querySelectorAll('.lang button').forEach(y=>y.setAttribute('aria-pressed',y===x));document.querySelectorAll('[data-t]').forEach(e=>e.textContent=T[L][e.dataset.t]);cal();price();qa()});
+cal();qa();
+</script>
+</body>
+</html>

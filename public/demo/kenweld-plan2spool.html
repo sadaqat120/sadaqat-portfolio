@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Plan2Spool prefab check · Testversie Kenweld</title>
+<meta name="robots" content="noindex,nofollow">
+<style>
+:root{--bg:#f2f4f6;--card:#fff;--ink:#16202a;--mute:#5b6773;--line:#dde3e9;--acc:#e3641b;--dark:#1d2b38;--ok:#1f7a4d;--font:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 var(--font)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+.note{background:#fff3cd;color:#664d03;font-size:.86rem;padding:7px 16px;text-align:center}
+.hero{background:var(--dark);color:#eef2f6;padding:34px 0 26px}
+.tag{display:inline-block;background:var(--acc);color:#fff;font:700 .78rem var(--font);letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:6px}
+h1{font-size:clamp(1.7rem,4.4vw,2.6rem);line-height:1.12;margin:12px 0 8px}
+.hero p{max-width:700px;color:#c6d0da;margin:0}
+.flow{display:grid;gap:10px;margin-top:20px}@media(min-width:760px){.flow{grid-template-columns:repeat(4,1fr)}}
+.fl{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:12px}
+.fl b{display:block;color:#ffb98f;font-size:.82rem;letter-spacing:.05em}.fl span{font-size:.93rem}
+.grid{display:grid;gap:18px;padding:22px 0 30px}@media(min-width:900px){.grid{grid-template-columns:1.15fr .85fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+h2{font-size:1.1rem;margin:0 0 6px}
+.step{font:700 .76rem var(--font);letter-spacing:.07em;text-transform:uppercase;color:var(--acc);margin:18px 0 6px}
+form>.step:first-child{margin-top:0}
+.drop{border:2px dashed var(--line);border-radius:12px;padding:20px;text-align:center;cursor:pointer;background:#fafbfc}
+.drop.on{border-color:var(--acc)}.drop b{color:var(--acc)}
+.files{list-style:none;padding:0;margin:8px 0 0;font-size:.9rem}.files li{padding:4px 0;border-bottom:1px solid var(--line)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:2px solid var(--line);background:#fff;color:var(--ink);border-radius:10px;padding:8px 12px;font:600 .9rem var(--font);cursor:pointer}
+.chip[aria-pressed=true]{border-color:var(--acc);background:#fdf0e8;color:#b44a0e}
+label{display:block;font-weight:600;font-size:.9rem;margin:10px 0 5px}
+input,select,textarea{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:9px;font:inherit;background:#fafbfc;color:var(--ink)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.chk{display:flex;gap:8px;align-items:flex-start;font-weight:400;font-size:.92rem;margin-top:12px}.chk input{width:auto;margin-top:4px}
+.go{display:block;width:100%;border:0;border-radius:10px;padding:13px;font:700 1rem var(--font);cursor:pointer;margin-top:14px;background:var(--acc);color:#fff}
+.sticky{position:sticky;top:12px}
+.track{list-style:none;padding:0;margin:10px 0 0;display:grid;gap:8px}
+.track li{display:flex;gap:10px;align-items:flex-start;font-size:.93rem}
+.dot{flex:0 0 22px;height:22px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center;font-size:.75rem;font-weight:700;color:#fff}
+.done .dot{background:var(--ok);border-color:var(--ok)}.now .dot{border-color:var(--acc);background:#fff;color:var(--acc)}
+.res{list-style:none;padding:0;margin:8px 0 0;display:grid;gap:6px}.res li{background:#fafbfc;border:1px solid var(--line);border-radius:9px;padding:8px 10px;font-size:.92rem}
+.small{font-size:.86rem}.mute{color:var(--mute)}.ok{color:var(--ok);font-weight:700}
+[hidden]{display:none!important}
+footer{padding:0 0 30px;font-size:.82rem;color:var(--mute)}
+</style>
+</head>
+<body>
+<div class="note">Testversie gemaakt voor Kenweld (Houthalen). Nog niet gekoppeld aan kenweld.be.</div>
+<div class="hero"><div class="wrap">
+<span class="tag">Plan2Spool</span>
+<h1>Uw plan zoals het is. Prefab zoals het moet.</h1>
+<p>Laad uw plan op als 2D-plan, DWG of IFC-model. U krijgt een prefab check terug: wat kan in de werkplaats, wat blijft beter op de werf, en hoe uw installatie in spools wordt opgedeeld. Elke analyse wordt nagekeken door onze lassers en projectleiders.</p>
+<div class="flow">
+<div class="fl"><b>1 · UPLOAD</b><span>Uw plan, zoals u het vandaag aanlevert</span></div>
+<div class="fl"><b>2 · ANALYSE</b><span>Opdeling in spools en materiaallijst</span></div>
+<div class="fl"><b>3 · CONTROLE</b><span>Nagekeken door lassers en projectleiders</span></div>
+<div class="fl"><b>4 · PREFAB CHECK</b><span>Werkplaats of werf, per onderdeel</span></div>
+</div>
+</div></div>
+<div class="wrap">
+<div class="grid">
+<form class="card" id="f" novalidate>
+<p class="step">1 · Uw plan</p>
+<div class="drop" id="drop" tabindex="0" role="button" aria-label="Plan opladen">Sleep uw plan hierheen of <b>kies een bestand</b><br><span class="small mute">PDF (2D-plan), DWG of IFC · meerdere bestanden mogelijk</span></div>
+<input type="file" id="file" multiple accept=".pdf,.dwg,.dxf,.ifc" hidden>
+<ul class="files" id="files"></ul>
+<p class="step">2 · Type installatie</p>
+<div class="chips" id="type">
+<button type="button" class="chip" aria-pressed="true">HVAC</button>
+<button type="button" class="chip" aria-pressed="false">CV</button>
+<button type="button" class="chip" aria-pressed="false">Koeling</button>
+<button type="button" class="chip" aria-pressed="false">Technische ruimte</button>
+<button type="button" class="chip" aria-pressed="false">Collector / skid</button>
+</div>
+<div class="two">
+<div><label for="rol">U bent</label><select id="rol"><option>Installateur</option><option>Studiebureau</option><option>Aannemer</option></select></div>
+<div><label for="fase">Fase van het project</label><select id="fase"><option>Offertefase</option><option>Uitvoering gepland</option><option>Al op de werf</option></select></div>
+</div>
+<div class="two">
+<div><label for="dn">Grootste diameter (ongeveer)</label><select id="dn"><option>Tot 2"</option><option>2" tot 4"</option><option>4" tot 8"</option><option>Groter dan 8"</option></select></div>
+<div><label for="start">Gewenste start werf</label><input id="start" type="month"></div>
+</div>
+<label for="nm">Naam en bedrijf</label><input id="nm" type="text" autocomplete="organization">
+<label for="em">E-mail</label><input id="em" type="email" autocomplete="email">
+<label class="chk"><input type="checkbox" id="conf" checked> Mijn plannen worden vertrouwelijk behandeld en alleen gebruikt voor deze prefab check.</label>
+<button class="go" type="submit">Vraag mijn prefab check aan</button>
+<p id="sent" class="ok small" hidden>✓ Aanvraag ontvangen. Zo volgt de klant de status hiernaast. (In deze testversie wordt niets verstuurd.)</p>
+</form>
+<div class="sticky">
+<div class="card">
+<h2>Wat u terugkrijgt</h2>
+<ul class="res">
+<li>Prefab-advies per onderdeel: werkplaats of werf</li>
+<li>Opdeling van de installatie in spools</li>
+<li>Materiaallijst</li>
+<li>Controleplan</li>
+</ul>
+<p class="small mute" style="margin:10px 0 0">Waar iets niet duidelijk is, vragen we het na in plaats van te gokken.</p>
+</div>
+<div class="card" style="margin-top:16px">
+<h2>Status van uw aanvraag</h2>
+<ul class="track" id="track">
+<li data-i="0"><span class="dot">✓</span><span><b>Plan ontvangen</b><br><span class="small mute" id="tfiles">Nog geen bestand</span></span></li>
+<li data-i="1"><span class="dot"></span><span><b>Analyse: spools en materiaallijst</b></span></li>
+<li data-i="2"><span class="dot"></span><span><b>Nagekeken door lassers en projectleiders</b></span></li>
+<li data-i="3"><span class="dot"></span><span><b>Prefab check verstuurd</b></span></li>
+</ul>
+<p class="small mute" style="margin:10px 0 0">De klant ziet dit op een eigen statuspagina en krijgt een e-mail bij elke stap. Kenweld ziet alle aanvragen in één overzicht in plaats van in de mailbox.</p>
+</div>
+</div>
+</div>
+<footer>Testversie door Sadaqat Rasool voor Kenweld · Plan2Spool. Komt in Kenweld-huisstijl op kenweld.be, aanvragen gaan rechtstreeks naar uw team.</footer>
+</div>
+<script>
+const $=s=>document.querySelector(s),files=[];
+const drop=$('#drop'),fi=$('#file');drop.onclick=()=>fi.click();drop.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();fi.click()}};
+['dragover','dragenter'].forEach(t=>drop.addEventListener(t,e=>{e.preventDefault();drop.classList.add('on')}));
+['dragleave','drop'].forEach(t=>drop.addEventListener(t,e=>{e.preventDefault();drop.classList.remove('on')}));
+drop.addEventListener('drop',e=>add(e.dataTransfer.files));fi.onchange=()=>add(fi.files);
+function add(l){for(const f of l)files.push(f);$('#files').innerHTML='';files.forEach(f=>{const li=document.createElement('li');li.textContent='📎 '+f.name+' · '+Math.max(1,Math.round(f.size/1024))+' KB';$('#files').appendChild(li)});setStage(files.length?0:-1)}
+document.querySelectorAll('#type .chip').forEach(c=>c.onclick=()=>c.setAttribute('aria-pressed',c.getAttribute('aria-pressed')==='true'?'false':'true'));
+function setStage(n){document.querySelectorAll('#track li').forEach(li=>{const i=+li.dataset.i;li.className=i<=n?'done':i===n+1?'now':'';li.querySelector('.dot').textContent=i<=n?'✓':''});$('#tfiles').textContent=files.length?files.map(f=>f.name).join(', '):'Nog geen bestand'}
+setStage(-1);
+let timer=null;
+$('#f').onsubmit=e=>{e.preventDefault();$('#sent').hidden=false;let s=0;setStage(0);clearInterval(timer);timer=setInterval(()=>{s++;setStage(s);if(s>=3)clearInterval(timer)},1200)};
+</script>
+</body>
+</html>

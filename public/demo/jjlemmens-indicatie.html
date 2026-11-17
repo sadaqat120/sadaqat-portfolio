@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Prijsindicatie aanbouw · Testversie Bouwservice J.J. Lemmens</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@600;700&family=Open+Sans:wght@400;600&display=swap">
+<style>
+:root{--bg:#f7f2ec;--card:#fff;--ink:#3d3a37;--mute:#6f6861;--line:#e6dcd1;--acc:#8f2828;--acc2:#b8742e;--ok:#2e7d4f;--hf:"Fira Sans",Helvetica,Arial,sans-serif;--bf:"Open Sans",Helvetica,Arial,sans-serif}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 var(--bf)}
+.wrap{max-width:1060px;margin:0 auto;padding:0 16px}
+.note{background:#fff3cd;color:#664d03;font-size:.86rem;padding:7px 16px;text-align:center}
+header{background:#fff;border-bottom:1px solid var(--line)}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 0;flex-wrap:wrap}
+.logo{font:700 1.25rem/1.1 var(--hf);color:#4a4a4a}.logo small{display:block;font-size:.95rem;color:#4a4a4a}
+.call{display:flex;gap:8px;flex-wrap:wrap}
+.call a{font:600 .92rem var(--bf);text-decoration:none;border-radius:8px;padding:8px 12px}
+.call .t{background:var(--acc);color:#fff}.call .w{background:#25d366;color:#fff}
+.hero{padding:26px 0 6px}
+h1{font:700 clamp(1.7rem,4.5vw,2.5rem)/1.12 var(--hf);color:var(--acc);margin:0 0 8px}
+.lede{max-width:680px;margin:0;color:var(--mute)}
+.stars{margin-top:10px;font-size:.92rem}.stars b{color:var(--acc2)}
+.grid{display:grid;gap:18px;padding:20px 0 30px}@media(min-width:900px){.grid{grid-template-columns:1.15fr .85fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+h2{font:700 1.15rem var(--hf);color:var(--acc);margin:0 0 4px}
+.step{font:600 .78rem var(--bf);letter-spacing:.06em;text-transform:uppercase;color:var(--acc2);margin:18px 0 6px}
+form>.step:first-child{margin-top:0}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:2px solid var(--line);background:#fff;color:var(--ink);border-radius:10px;padding:9px 13px;font:600 .93rem var(--bf);cursor:pointer}
+.chip[aria-pressed=true]{border-color:var(--acc);background:#fbf0ef;color:var(--acc)}
+label{display:block;font-weight:600;font-size:.9rem;margin:10px 0 5px}
+input,select,textarea{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:9px;font:inherit;background:#fffdfa;color:var(--ink)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.drop{border:2px dashed var(--line);border-radius:12px;padding:18px;text-align:center;cursor:pointer;background:#fffdfa}
+.drop b{color:var(--acc)}
+.thumbs{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}.thumbs img{width:72px;height:72px;object-fit:cover;border-radius:8px;border:1px solid var(--line)}
+.sticky{position:sticky;top:12px}
+.price{font:700 2rem/1.1 var(--hf);color:var(--acc);margin:6px 0 2px}
+.small{font-size:.86rem}.mute{color:var(--mute)}
+.go{display:block;width:100%;border:0;border-radius:10px;padding:13px;font:700 1rem var(--bf);cursor:pointer;margin-top:12px;text-align:center;text-decoration:none}
+.go.p{background:var(--acc);color:#fff}.go.w{background:#25d366;color:#fff}
+pre{white-space:pre-wrap;background:#fbf7f2;border:1px solid var(--line);border-radius:10px;padding:12px;font:13px/1.5 ui-monospace,Menlo,monospace;margin:10px 0 0}
+.why li{margin:5px 0}
+.ok{color:var(--ok);font-weight:700}
+[hidden]{display:none!important}
+footer{padding:0 0 30px;font-size:.82rem;color:var(--mute)}
+</style>
+</head>
+<body>
+<div class="note">Testversie gemaakt voor Bouwservice J.J. Lemmens. De prijzen zijn <b>voorbeeldprijzen</b>: Joseph vult zijn eigen prijzen in.</div>
+<header><div class="wrap top">
+<div class="logo">Bouwservice<small>J.J. Lemmens</small></div>
+<div class="call"><a class="t" href="tel:+31620254579">📞 06 – 20 25 45 79</a><a class="w" href="https://wa.me/31620254579" target="_blank" rel="noopener">WhatsApp</a></div>
+</div></header>
+<div class="wrap">
+<div class="hero">
+<h1>Wat kost jouw aanbouw ongeveer?</h1>
+<p class="lede">Beantwoord vier korte vragen en zie direct een eerlijke prijsindicatie. Daarna komt Joseph graag langs voor een kop koffie en een offerte op maat.</p>
+<p class="stars"><b>★★★★★ 4,7</b> uit 15 beoordelingen · Werkgebied Limburg</p>
+</div>
+<div class="grid">
+<form class="card" id="f" novalidate>
+<p class="step">1 · Wat wil je laten doen?</p>
+<div class="chips" id="type">
+<button type="button" class="chip" data-v="aanbouw" aria-pressed="true">Aanbouw / uitbouw</button>
+<button type="button" class="chip" data-v="renovatie" aria-pressed="false">Renovatie</button>
+<button type="button" class="chip" data-v="metselwerk" aria-pressed="false">Metselwerk</button>
+</div>
+<div id="sizeBox">
+<p class="step">2 · Hoe groot?</p>
+<div class="two"><div><label for="l">Lengte (m)</label><input id="l" type="number" min="1" step="0.5" value="6.5"></div><div><label for="b">Diepte (m)</label><input id="b" type="number" min="1" step="0.5" value="5.5"></div></div>
+<p class="step">3 · Hoe ver moet Joseph gaan?</p>
+<div class="chips" id="lvl">
+<button type="button" class="chip" data-v="casco" aria-pressed="false">Casco</button>
+<button type="button" class="chip" data-v="wd" aria-pressed="true">Wind- en waterdicht</button>
+<button type="button" class="chip" data-v="compleet" aria-pressed="false">Compleet afgewerkt</button>
+</div>
+<div class="chips" style="margin-top:10px" id="extra">
+<button type="button" class="chip" data-v="vvw" aria-pressed="false">+ Vloerverwarming</button>
+<button type="button" class="chip" data-v="fund" aria-pressed="false">+ Extra diepe fundering</button>
+<button type="button" class="chip" data-v="sloop" aria-pressed="false">+ Sloopwerk</button>
+</div>
+</div>
+<div id="descBox" hidden>
+<p class="step">2 · Vertel kort wat er moet gebeuren</p>
+<textarea id="desc" rows="3" placeholder="Bijv. gevel van 40 m² opnieuw voegen, of badkamer en keuken vernieuwen"></textarea>
+</div>
+<p class="step" id="photoStep">4 · Foto's van de situatie</p>
+<div class="drop" id="drop" tabindex="0" role="button" aria-label="Foto's toevoegen">📷 <b>Maak of kies foto's</b><br><span class="small mute">Zo ziet Joseph de situatie al vóór het eerste bezoek</span></div>
+<input type="file" id="file" accept="image/*" multiple hidden>
+<div class="thumbs" id="thumbs"></div>
+<div class="two"><div><label for="start">Wanneer starten?</label><select id="start"><option>Zo snel mogelijk</option><option>Binnen 3 maanden</option><option>Binnen 6 maanden</option><option>Ik oriënteer me nog</option></select></div>
+<div><label for="plaats">Plaats</label><input id="plaats" type="text" placeholder="Bijv. Echt"></div></div>
+<div class="two"><div><label for="nm">Naam</label><input id="nm" type="text" autocomplete="name"></div><div><label for="tel">Telefoon</label><input id="tel" type="tel" autocomplete="tel"></div></div>
+<button class="go p" type="submit">Plan een vrijblijvend bezoek</button>
+<p id="sent" class="ok small" hidden>✓ Zo ziet de klant de bevestiging. (In deze testversie wordt niets verstuurd.)</p>
+</form>
+<div class="sticky">
+<div class="card">
+<h2>Jouw prijsindicatie</h2>
+<div class="price" id="price">—</div>
+<p class="small mute" id="pnote">Inclusief materiaal en arbeid, exclusief btw. Een indicatie, geen offerte.</p>
+<a class="go w" id="wa" href="#" target="_blank" rel="noopener">Stuur dit naar Joseph via WhatsApp</a>
+<p class="step" style="margin-top:16px">Wat Joseph binnenkrijgt</p>
+<pre id="out"></pre>
+</div>
+<div class="card" style="margin-top:16px">
+<h2>Waarom dit Joseph tijd én opdrachten oplevert</h2>
+<ul class="why small">
+<li>Mensen zien eerst een eerlijke indicatie, dus de koffieafspraken zijn met klanten die echt willen bouwen.</li>
+<li>Met maten en foto's weet Joseph vóór het bezoek al wat er speelt.</li>
+<li>Aanvragen komen ook 's avonds binnen, als mensen thuis plannen maken.</li>
+<li>Het telefoonnummer is direct aan te tikken op een mobiel.</li>
+</ul>
+</div>
+</div>
+</div>
+<footer>Testversie door Sadaqat Rasool voor Bouwservice J.J. Lemmens. Komt in dezelfde stijl op bouwservicejjlemmens.nl, met Josephs eigen prijzen.</footer>
+</div>
+<script>
+const $=s=>document.querySelector(s);const P={casco:1100,wd:1700,compleet:2500},X={vvw:65,fund:150,sloop:40};
+let type='aanbouw',lvl='wd';const ex=new Set();let photos=[];
+function sel(id,fn){document.querySelectorAll('#'+id+' .chip').forEach(c=>c.onclick=()=>{document.querySelectorAll('#'+id+' .chip').forEach(x=>x.setAttribute('aria-pressed',x===c));fn(c.dataset.v);draw()})}
+sel('type',v=>{type=v;$('#sizeBox').hidden=v!=='aanbouw';$('#descBox').hidden=v==='aanbouw';$('#photoStep').textContent=(v==='aanbouw'?'4':'3')+" · Foto's van de situatie"});
+sel('lvl',v=>lvl=v);
+document.querySelectorAll('#extra .chip').forEach(c=>c.onclick=()=>{const v=c.dataset.v;ex.has(v)?ex.delete(v):ex.add(v);c.setAttribute('aria-pressed',ex.has(v));draw()});
+const drop=$('#drop'),fi=$('#file');drop.onclick=()=>fi.click();drop.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();fi.click()}};
+fi.onchange=()=>{[...fi.files].forEach(f=>{photos.push(f.name);const r=new FileReader();r.onload=()=>{const i=new Image();i.src=r.result;i.alt=f.name;$('#thumbs').appendChild(i)};r.readAsDataURL(f)});draw()};
+const eur=n=>'€ '+(Math.round(n/500)*500).toLocaleString('nl-NL');
+const LV={casco:'Casco',wd:'Wind- en waterdicht',compleet:'Compleet afgewerkt'},XN={vvw:'vloerverwarming',fund:'extra diepe fundering',sloop:'sloopwerk'};
+function draw(){
+ let line='';
+ if(type==='aanbouw'){const m2=Math.max(0,(+$('#l').value||0)*(+$('#b').value||0));let per=P[lvl];ex.forEach(k=>per+=X[k]);const base=m2*per;
+  $('#price').textContent=m2?eur(base*.9)+' – '+eur(base*1.1):'—';$('#pnote').textContent='Voor ca. '+m2.toFixed(1).replace('.',',')+' m², '+LV[lvl].toLowerCase()+'. Incl. materiaal en arbeid, excl. btw. Een indicatie, geen offerte.';
+  line='Aanbouw '+$('#l').value.replace('.',',')+' × '+$('#b').value.replace('.',',')+' m ('+m2.toFixed(1).replace('.',',')+' m²), '+LV[lvl]+(ex.size?', + '+[...ex].map(k=>XN[k]).join(', '):'')+'\nIndicatie: '+$('#price').textContent;}
+ else{$('#price').textContent='Op maat';$('#pnote').textContent="Voor "+type+" maakt Joseph een prijs op basis van je foto's en een bezoek.";line=(type==='renovatie'?'Renovatie':'Metselwerk')+': '+($('#desc').value||'…');}
+ const txt='Nieuwe aanvraag via de website\n'+line+"\nFoto's: "+(photos.length?photos.length+' bijgevoegd':'geen')+'\nStart: '+$('#start').value+'\nPlaats: '+($('#plaats').value||'…')+'\nNaam: '+($('#nm').value||'…')+'\nTelefoon: '+($('#tel').value||'…');
+ $('#out').textContent=txt;$('#wa').href='https://wa.me/31620254579?text='+encodeURIComponent('Hallo Joseph,\n'+txt.replace('Nieuwe aanvraag via de website\n',''));
+}
+document.querySelectorAll('input,select,textarea').forEach(e=>e.addEventListener('input',draw));draw();
+$('#f').onsubmit=e=>{e.preventDefault();draw();$('#sent').hidden=false};
+</script>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>IJs-calculator · Testversie OMNIAIR</title>
+<meta name="robots" content="noindex,nofollow">
+<style>
+:root{--bg:#f4f6f7;--card:#fff;--ink:#0d0f10;--mute:#5f676d;--line:#e2e6e8;--ice:#2f8fd6;--icebg:#eaf4fc;--font:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 var(--font)}
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
+.note{background:#fff3cd;color:#664d03;font-size:.86rem;padding:7px 16px;text-align:center}
+header{background:#0d0f10;color:#fff}
+.top{display:flex;justify-content:space-between;align-items:center;padding:14px 0}
+.logo{font-weight:800;letter-spacing:.18em}
+.hero{padding:28px 0 8px}
+h1{font-size:clamp(1.7rem,4.5vw,2.5rem);line-height:1.12;margin:0 0 8px}
+.lede{color:var(--mute);max-width:680px;margin:0}
+.grid{display:grid;gap:18px;padding:20px 0 30px}@media(min-width:880px){.grid{grid-template-columns:1fr 1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px}
+label{display:flex;justify-content:space-between;font-weight:600;font-size:.92rem;margin:16px 0 6px}
+label:first-of-type{margin-top:0}
+label output{color:var(--ice);font-variant-numeric:tabular-nums}
+input[type=range]{width:100%;accent-color:var(--ice)}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{border:2px solid var(--line);background:#fff;border-radius:999px;padding:7px 13px;font:600 .9rem var(--font);cursor:pointer;color:var(--ink)}
+.chip[aria-pressed=true]{border-color:var(--ink);background:var(--ink);color:#fff}
+.hint{font-size:.82rem;color:var(--mute);margin:4px 0 0}
+.big{font-size:3rem;font-weight:800;line-height:1;color:var(--ice);font-variant-numeric:tabular-nums}
+.res{background:var(--icebg);border-radius:14px;padding:16px;margin-bottom:12px}
+.row{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--line);font-size:.95rem}.row:last-child{border:0}
+.row b{font-variant-numeric:tabular-nums}
+.up{border:2px solid var(--ink);border-radius:14px;padding:14px;margin-top:14px}
+.up p{margin:0 0 10px}
+.btn{display:block;width:100%;border:0;border-radius:999px;padding:13px;background:var(--ink);color:#fff;font:700 1rem var(--font);cursor:pointer}
+.ok{color:#1f7a4d;font-weight:700;font-size:.9rem;margin:8px 0 0}
+.why li{margin:5px 0}
+[hidden]{display:none!important}
+footer{padding:0 0 30px;font-size:.82rem;color:var(--mute)}
+</style>
+</head>
+<body>
+<div class="note">Testversie gemaakt voor OMNIAIR. Producten en prijzen van omniair.nl, berekening is een indicatie.</div>
+<header><div class="wrap top"><div class="logo">OMNIAIR</div><span class="hint" style="color:#aab">IJsbad · IJs-calculator</span></div></header>
+<div class="wrap">
+<div class="hero">
+<h1>Hoeveel ijs heb jij nodig?</h1>
+<p class="lede">"De hoeveelheid hangt af van de begintemperatuur, het watervolume en de gewenste temperatuur." Nu reken je het in tien seconden uit, en weet je precies hoeveel Ice Bricks je in de vriezer moet hebben.</p>
+</div>
+<div class="grid">
+<div class="card">
+<label>Jouw ijsbad</label>
+<div class="chips" id="bath"><button class="chip" data-l="320" aria-pressed="true">Round Original · 320 L</button></div>
+<label for="vol">Water in het bad <output id="volo"></output></label>
+<input id="vol" type="range" min="100" max="320" step="10" value="250">
+<p class="hint">Zittend tot je schouders is vaak 220 tot 260 liter.</p>
+<label for="tin">Temperatuur kraanwater <output id="tino"></output></label>
+<input id="tin" type="range" min="6" max="22" step="1" value="15">
+<p class="hint">Winter rond 8 tot 10 °C, zomer rond 15 tot 18 °C. Meten gaat het makkelijkst met de Water Thermometer.</p>
+<label for="tgt">Gewenste temperatuur <output id="tgto"></output></label>
+<input id="tgt" type="range" min="3" max="15" step="1" value="8">
+<label>Hoe vaak per week?</label>
+<div class="chips" id="freq"><button class="chip" data-f="2" aria-pressed="false">2×</button><button class="chip" data-f="3" aria-pressed="true">3×</button><button class="chip" data-f="5" aria-pressed="false">5×</button><button class="chip" data-f="7" aria-pressed="false">Elke dag</button></div>
+</div>
+<div class="card">
+<div class="res">
+<div class="hint">Nodig per sessie</div>
+<div class="big"><span id="kg">0</span> kg ijs</div>
+<div class="hint" id="bricks"></div>
+</div>
+<div class="row"><span>Water afkoelen</span><b id="dt"></b></div>
+<div class="row"><span>Ice Bricks bij je bad</span><b>4 × 2 L</b></div>
+<div class="row"><span>Ice Bricks nodig per sessie</span><b id="need"></b></div>
+<div class="row"><span>Ice Bricks voor <span id="fr"></span> sessies per week</span><b id="needw"></b></div>
+<div class="up">
+<p id="adv"></p>
+<button class="btn" id="add" type="button">Voeg toe aan winkelwagen</button>
+<p class="ok" id="ok" hidden>✓ In deze testversie gaat er niets naar de winkelwagen. Live voegt deze knop de producten direct toe.</p>
+</div>
+<p class="hint" style="margin-top:10px">Indicatie op basis van smeltwarmte van ijs, zonder opwarming door lucht en lichaam. In de zon of bij lange sessies heb je wat meer nodig.</p>
+</div>
+</div>
+<div class="card" style="margin-bottom:24px">
+<h2 style="margin:0 0 6px;font-size:1.15rem">Waarom dit OMNIAIR meer oplevert</h2>
+<ul class="why">
+<li>Jullie eigen les: "je wint op de frictie die je weghaalt". De grootste frictie bij een ijsbad is weten hoeveel ijs je nodig hebt.</li>
+<li>Wie ziet dat 4 Ice Bricks niet genoeg zijn, bestelt er meteen een extra set bij. Een hogere orderwaarde zonder extra advertentiekosten.</li>
+<li>Minder klantvragen als "hoeveel ijs moet ik gebruiken?".</li>
+<li>Werkt als losse pagina, op de productpagina, of als advertentie-landingspagina.</li>
+</ul>
+</div>
+<footer>Testversie door Sadaqat Rasool voor OMNIAIR. Komt in jullie Shopify-thema, gekoppeld aan de echte producten en de winkelwagen.</footer>
+</div>
+<script>
+const $=s=>document.querySelector(s);let freq=3;
+const PACK_KG=2,PER_SET=4,PACK_PRICE=20,THERMO=10; // Reusable Ice Packs (4x) €20, Water Thermometer €10 (omniair.nl)
+document.querySelectorAll('#freq .chip').forEach(c=>c.onclick=()=>{freq=+c.dataset.f;document.querySelectorAll('#freq .chip').forEach(x=>x.setAttribute('aria-pressed',x===c));calc()});
+function calc(){
+ const V=+$('#vol').value,Ti=+$('#tin').value;let Tt=+$('#tgt').value;
+ $('#volo').textContent=V+' L';$('#tino').textContent=Ti+' °C';$('#tgto').textContent=Tt+' °C';
+ const dT=Math.max(0,Ti-Tt);
+ const perKg=334+2.1*18+4.186*Tt; // melt + from freezer -18 °C + melted ice to target
+ const kg=V*4.186*dT/perKg;
+ const packs=Math.ceil(kg/PACK_KG);
+ $('#kg').textContent=Math.round(kg);
+ $('#dt').textContent=Ti+' → '+Tt+' °C';
+ $('#need').textContent=dT?packs+' bricks':'0';
+ $('#bricks').textContent=dT?'= '+packs+' Ice Bricks van 2 liter':'Je kraanwater is al koud genoeg.';
+ // bricks need ~24h to refreeze: daily users need two rotations
+ const rot=freq>=5?2:1, total=packs*rot;
+ $('#fr').textContent=freq===7?'7':freq;
+ $('#needw').textContent=dT?total+' bricks':'0';
+ const extraSets=Math.max(0,Math.ceil((total-PER_SET)/PER_SET));
+ $('#adv').innerHTML='';
+ const p=document.createElement('span');
+ if(!dT){p.textContent='Met deze temperaturen heb je geen extra ijs nodig. Tip: de Thermal Cover houdt het water langer koud.';}
+ else if(extraSets===0){p.textContent='Je 4 meegeleverde Ice Bricks zijn genoeg. Tip: meet je water met de Water Thermometer (€'+THERMO+').';}
+ else{p.textContent='Je hebt '+total+' bricks nodig'+(rot>1?' (twee sets om te wisselen, want opnieuw bevriezen kost tijd)':'')+'. Met '+extraSets+' × Reusable Ice Packs (4x) à €'+PACK_PRICE+' heb je altijd genoeg ijs klaarliggen.';}
+ $('#adv').appendChild(p);
+ $('#add').textContent=extraSets?('Voeg '+extraSets+' × Ice Packs toe · €'+(extraSets*PACK_PRICE)):'Voeg Water Thermometer toe · €'+THERMO;
+}
+['vol','tin','tgt'].forEach(i=>$('#'+i).addEventListener('input',calc));
+$('#add').onclick=()=>{$('#ok').hidden=false};
+calc();
+</script>
+</body>
+</html>

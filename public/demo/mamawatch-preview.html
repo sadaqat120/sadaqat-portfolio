@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MamaWatch · Preview</title>
+<meta name="robots" content="noindex,nofollow">
+<style>
+:root{--bg:#fffaf6;--card:#fff;--ink:#2a1a1f;--mute:#6b5a5f;--line:#efe2dc;--acc:#a3264a;--acc2:#0f6b5c;--warn:#fdecee;--font:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1a1214;--card:#231a1d;--ink:#f6eef0;--mute:#c2adb3;--line:#3a2b30;--acc:#f07a9a;--acc2:#5fc9b5;--warn:#3a1d25}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 var(--font)}
+.wrap{max-width:860px;margin:0 auto;padding:0 16px}
+.note{background:#fff3cd;color:#664d03;font-size:.85rem;padding:7px 16px;text-align:center}
+nav{display:flex;justify-content:space-between;align-items:center;padding:12px 0;gap:10px}
+.logo{font-weight:800;font-size:1.15rem}.logo span{color:var(--acc)}
+.lang{display:flex;border:2px solid var(--acc);border-radius:999px;overflow:hidden}
+.lang button{border:0;background:transparent;color:var(--acc);font:700 .95rem var(--font);padding:7px 14px;cursor:pointer}
+.lang button[aria-pressed=true]{background:var(--acc);color:#fff}
+.alert{background:var(--warn);border:2px solid var(--acc);border-radius:16px;padding:18px;margin:8px 0 18px}
+.alert h1{font-size:clamp(1.4rem,5vw,1.9rem);line-height:1.2;margin:0 0 10px;color:var(--acc)}
+.alert ul{margin:0;padding-left:0;list-style:none;display:grid;gap:8px}
+.alert li{background:var(--card);border-radius:10px;padding:10px 12px;font-weight:600}
+.act{margin:14px 0 0;font-weight:800;font-size:1.05rem}
+.disc{font-size:.82rem;color:var(--mute);margin:8px 0 0}
+section{padding:18px 0;border-top:1px solid var(--line)}
+h2{font-size:1.3rem;margin:0 0 8px}
+p{margin:0 0 10px}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+@media(min-width:640px){.stats{grid-template-columns:repeat(4,1fr)}}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px}
+.stat b{display:block;font-size:1.6rem;color:var(--acc2)}.stat span{font-size:.85rem;color:var(--mute)}
+.steps{display:grid;gap:10px}@media(min-width:640px){.steps{grid-template-columns:repeat(3,1fr)}}
+.step{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px}.step b{color:var(--acc2)}
+.btn{display:inline-block;background:var(--acc2);color:#fff;text-decoration:none;font-weight:700;padding:11px 16px;border-radius:10px;margin:4px 6px 4px 0}
+.btn.o{background:transparent;color:var(--acc2);border:2px solid var(--acc2)}
+footer{padding:20px 0 36px;font-size:.82rem;color:var(--mute)}
+</style>
+</head>
+<body>
+<div class="note" data-t="note">Preview made for MamaWatch Association. Stays free on GitHub Pages: no monthly fees. Warning-sign wording to be confirmed by MamaWatch.</div>
+<div class="wrap">
+<nav><div class="logo">Mama<span>Watch</span></div>
+<div class="lang" role="group" aria-label="Language"><button data-l="en" aria-pressed="true">EN</button><button data-l="fr" aria-pressed="false">FR</button></div></nav>
+
+<div class="alert" role="region" aria-labelledby="ws">
+<h1 id="ws" data-t="h1">Pregnant? These signs mean: go to a health facility today.</h1>
+<ul>
+<li data-t="s1">Severe headache that does not go away</li>
+<li data-t="s2">Blurred vision or seeing spots</li>
+<li data-t="s3">Sudden swelling of the face, hands or feet</li>
+<li data-t="s4">Pain high in the belly, under the ribs</li>
+<li data-t="s5">Difficulty breathing</li>
+<li data-t="s6">Fits or convulsions: this is an emergency</li>
+</ul>
+<p class="act" data-t="act">Do not wait. These are not malaria or stress until a health worker has checked.</p>
+<p class="disc" data-t="disc">MamaWatch Watchers help you recognise danger signs and reach care. They do not make a diagnosis.</p>
+</div>
+
+<section>
+<h2 data-t="storyh">Why MamaWatch exists</h2>
+<p data-t="story">Stella's headaches, swelling and fatigue were dismissed as malaria or stress. A neighbour recognised the danger signs and insisted she return to hospital. That neighbour saved her life. MamaWatch trains communities so every mother has that neighbour.</p>
+</section>
+
+<section>
+<h2 data-t="impacth">Our impact so far</h2>
+<div class="stats">
+<div class="stat"><b>455+</b><span data-t="i1">women reached through awareness activities</span></div>
+<div class="stat"><b>110</b><span data-t="i2">people trained at the June 2026 workshop</span></div>
+<div class="stat"><b>105</b><span data-t="i3">women reached through ANC education, Bamenda Regional Hospital</span></div>
+<div class="stat"><b>93–96%</b><span data-t="i4">awareness gap on preeclampsia in baseline surveys</span></div>
+</div>
+</section>
+
+<section>
+<h2 data-t="wh">Become a Community Watcher</h2>
+<div class="steps">
+<div class="step"><b data-t="w1h">1. Learn</b><p data-t="w1">Join a training and learn the danger signs.</p></div>
+<div class="step"><b data-t="w2h">2. Watch</b><p data-t="w2">Look out for pregnant women in your community.</p></div>
+<div class="step"><b data-t="w3h">3. Act</b><p data-t="w3">Help her reach care in time.</p></div>
+</div>
+</section>
+
+<section>
+<h2 data-t="suph">Support MamaWatch</h2>
+<p data-t="sup">MamaWatch is youth-led and runs without external funding. Partner with us or support a training in your community.</p>
+<a class="btn" href="https://mamawatch.github.io/mamawatch/" data-t="b1">Partner with us</a><a class="btn o" href="https://mamawatch.github.io/mamawatch/" data-t="b2">Support our work</a>
+</section>
+
+<footer data-t="foot">MamaWatch Association · Ngaoundéré, Adamawa Region, Cameroon · Preview by Sadaqat Rasool</footer>
+</div>
+<script>
+const FR={note:"Aperçu réalisé pour MamaWatch Association. Reste gratuit sur GitHub Pages : aucun frais mensuel. Formulation des signes d'alerte à confirmer par MamaWatch.",
+h1:"Enceinte ? Ces signes veulent dire : allez dans un centre de santé aujourd'hui.",
+s1:"Maux de tête forts qui ne passent pas",s2:"Vision floue ou points devant les yeux",s3:"Gonflement soudain du visage, des mains ou des pieds",s4:"Douleur en haut du ventre, sous les côtes",s5:"Difficulté à respirer",s6:"Crises ou convulsions : c'est une urgence",
+act:"N'attendez pas. Ce n'est pas le paludisme ou le stress tant qu'un agent de santé n'a pas vérifié.",
+disc:"Les Watchers de MamaWatch vous aident à reconnaître les signes de danger et à accéder aux soins. Ils ne posent pas de diagnostic.",
+storyh:"Pourquoi MamaWatch existe",story:"Les maux de tête, le gonflement et la fatigue de Stella ont été pris pour du paludisme ou du stress. Une voisine a reconnu les signes de danger et a insisté pour qu'elle retourne à l'hôpital. Cette voisine lui a sauvé la vie. MamaWatch forme les communautés pour que chaque mère ait cette voisine.",
+impacth:"Notre impact à ce jour",i1:"femmes touchées par les activités de sensibilisation",i2:"personnes formées lors de l'atelier de juin 2026",i3:"femmes touchées par l'éducation CPN, Hôpital Régional de Bamenda",i4:"d'écart de connaissance sur la prééclampsie (enquêtes de base)",
+wh:"Devenez Watcher communautaire",w1h:"1. Apprendre",w1:"Participez à une formation et apprenez les signes de danger.",w2h:"2. Veiller",w2:"Soyez attentif aux femmes enceintes de votre communauté.",w3h:"3. Agir",w3:"Aidez-la à accéder aux soins à temps.",
+suph:"Soutenir MamaWatch",sup:"MamaWatch est dirigée par des jeunes et fonctionne sans financement extérieur. Devenez partenaire ou soutenez une formation dans votre communauté.",b1:"Devenir partenaire",b2:"Soutenir notre travail",
+foot:"MamaWatch Association · Ngaoundéré, Région de l'Adamaoua, Cameroun · Aperçu par Sadaqat Rasool"};
+const EN={};document.querySelectorAll('[data-t]').forEach(e=>EN[e.dataset.t]=e.textContent);
+document.querySelectorAll('.lang button').forEach(b=>b.onclick=()=>{const l=b.dataset.l,D=l==='fr'?FR:EN;document.documentElement.lang=l;document.querySelectorAll('.lang button').forEach(x=>x.setAttribute('aria-pressed',x===b));document.querySelectorAll('[data-t]').forEach(e=>{if(D[e.dataset.t])e.textContent=D[e.dataset.t]})});
+</script>
+</body>
+</html>
